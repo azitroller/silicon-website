@@ -1,0 +1,656 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Silicon Computer and Communications PLC - Learn about our company history, leadership team, mission and values.">
+    <meta name="keywords" content="IT company, technology solutions provider, computer hardware, networking solutions, about us">
+    <meta name="author" content="Silicon Computer and Communications PLC">
+    <meta property="og:title" content="About - Silicon Computer and Communications PLC">
+    <meta property="og:description" content="Learn about our company, mission, values and leadership team">
+    <meta property="og:type" content="website">
+    <title>About | Silicon Computer and Communications PLC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--dark);
+            scroll-behavior: smooth;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+        
+        .page-header {
+            background: linear-gradient(rgba(30, 41, 59, 0.9), rgba(30, 41, 59, 0.8)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .team-member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .team-member-card {
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .active-nav::after {
+            width: 100%;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 32px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: calc(100% + 16px);
+            background-color: #e5e7eb;
+            left: 10px;
+            top: 0;
+        }
+        
+        .timeline-item:last-child::before {
+            height: 100%;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex-shrink-0 flex items-center">
+                        <div class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">S</div>
+                        <span class="ml-2 text-xl font-semibold text-gray-900">Silicon</span>
+                    </a>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="index.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">Home</a>
+                    <a href="products.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">Products</a>
+                    <a href="services.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">Services</a>
+                    <a href="about.html" class="nav-link text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium active-nav">About</a>
+                    <a href="contact.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">Contact</a>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="index.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
+                <a href="products.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Products</a>
+                <a href="services.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Services</a>
+                <a href="about.html" class="bg-blue-50 border-blue-500 text-blue-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">About</a>
+                <a href="contact.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header text-white fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+            <div class="text-center">
+                <h1 class="text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl">
+                    About Silicon
+                </h1>
+                <p class="mt-3 max-w-2xl mx-auto text-base text-gray-300 sm:mt-5 sm:text-lg md:mt-5 md:text-xl">
+                    Our story, mission, and the team powering innovation.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Overview -->
+    <section class="py-16 bg-white scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+                <div class="lg:col-span-5">
+                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                        Our Story
+                    </h2>
+                    <p class="mt-3 text-lg text-gray-500">
+                        Silicon Computer and Communications PLC has been at the forefront of technology innovation since our founding in 1995.
+                    </p>
+                    <p class="mt-3 text-lg text-gray-500">
+                        Starting as a small hardware provider, we've grown into a full-service technology solutions company serving clients across multiple industries and geographies.
+                    </p>
+                    <p class="mt-3 text-lg text-gray-500">
+                        Throughout our journey, we've remained committed to delivering cutting-edge solutions with exceptional service, building long-term relationships with our clients and partners.
+                    </p>
+                    <div class="mt-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-blue-500 rounded-md p-2">
+                                <i class="fas fa-bullseye text-white text-xl"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-lg font-medium text-gray-900">Our Mission</h3>
+                                <p class="mt-1 text-gray-500">
+                                    To empower businesses through innovative technology solutions that drive growth, efficiency, and competitive advantage.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mt-6 flex items-center">
+                            <div class="flex-shrink-0 bg-green-500 rounded-md p-2">
+                                <i class="fas fa-eye text-white text-xl"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-lg font-medium text-gray-900">Our Vision</h3>
+                                <p class="mt-1 text-gray-500">
+                                    To be the most trusted partner for technology solutions, recognized for our expertise, reliability, and customer-centric approach.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-12 relative lg:mt-0 lg:col-span-7">
+                    <div class="bg-white rounded-lg overflow-hidden">
+                        <img class="w-full h-auto" src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Silicon office">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Values -->
+    <section class="py-16 bg-gray-50 scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Our Values</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Principles That Guide Us
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    These core values drive everything we do and define how we work with our clients and each other.
+                </p>
+            </div>
+
+            <div class="mt-16">
+                <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+                    <!-- Value 1 -->
+                    <div class="glass-card p-8 rounded-lg">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white mx-auto">
+                            <i class="fas fa-star text-xl"></i>
+                        </div>
+                        <h3 class="mt-6 text-xl font-medium text-gray-900 text-center">Excellence</h3>
+                        <p class="mt-2 text-base text-gray-500 text-center">
+                            We strive for excellence in everything we do, from product quality to service delivery and client satisfaction.
+                        </p>
+                    </div>
+
+                    <!-- Value 2 -->
+                    <div class="glass-card p-8 rounded-lg">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white mx-auto">
+                            <i class="fas fa-lightbulb text-xl"></i>
+                        </div>
+                        <h3 class="mt-6 text-xl font-medium text-gray-900 text-center">Innovation</h3>
+                        <p class="mt-2 text-base text-gray-500 text-center">
+                            We continuously pursue innovative solutions and embrace emerging technologies to stay ahead of industry trends.
+                        </p>
+                    </div>
+
+                    <!-- Value 3 -->
+                    <div class="glass-card p-8 rounded-lg">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white mx-auto">
+                            <i class="fas fa-users text-xl"></i>
+                        </div>
+                        <h3 class="mt-6 text-xl font-medium text-gray-900 text-center">Partnership</h3>
+                        <p class="mt-2 text-base text-gray-500 text-center">
+                            We build lasting relationships with our clients, partners, and employees based on trust, respect, and mutual success.
+                        </p>
+                    </div>
+
+                    <!-- Value 4 -->
+                    <div class="glass-card p-8 rounded-lg">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-yellow-500 text-white mx-auto">
+                            <i class="fas fa-balance-scale text-xl"></i>
+                        </div>
+                        <h3 class="mt-6 text-xl font-medium text-gray-900 text-center">Integrity</h3>
+                        <p class="mt-2 text-base text-gray-500 text-center">
+                            We operate with the highest ethical standards, honesty, and transparency in all our business practices.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company History Timeline -->
+    <section class="py-16 bg-white scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Our Journey</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Milestones & Achievements
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    Key moments that have shaped our growth and success over the years.
+                </p>
+            </div>
+
+            <div class="mt-16 max-w-3xl mx-auto">
+                <div class="space-y-8">
+                    <!-- 1995 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="ml-6">
+                            <h3 class="text-lg font-bold text-gray-900">1995: Foundation</h3>
+                            <p class="mt-1 text-gray-600">Silicon Computer and Communications was founded with a focus on providing hardware solutions to local businesses.</p>
+                        </div>
+                    </div>
+
+                    <!-- 2001 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="ml-6">
+                            <h3 class="text-lg font-bold text-gray-900">2001: Network Services Launch</h3>
+                            <p class="mt-1 text-gray-600">Expanded service offerings to include networking solutions, becoming one of the first companies to offer enterprise-grade networks locally.</p>
+                        </div>
+                    </div>
+
+                    <!-- 2005 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="ml-6">
+                            <h3 class="text-lg font-bold text-gray-900">2005: Corporate Expansion</h3>
+                            <p class="mt-1 text-gray-600">Incorporated as Silicon Computer and Communications PLC and expanded operations to serve clients nationwide.</p>
+                        </div>
+                    </div>
+
+                    <!-- 2010 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="ml-6">
+                            <h3 class="text-lg font-bold text-gray-900">2010: Banking Solutions</h3>
+                            <p class="mt-1 text-gray-600">Developed specialized banking hardware and software solutions, becoming the preferred provider for financial institutions.</p>
+                        </div>
+                    </div>
+
+                    <!-- 2015 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="ml-6">
+                            <h3 class="text-lg font-bold text-gray-900">2015: Cloud Services</h3>
+                            <p class="mt-1 text-gray-600">Launched comprehensive cloud services offerings, helping clients migrate to and manage cloud infrastructure.</p>
+                        </div>
+                    </div>
+
+                    <!-- 2020 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="ml-6">
+                            <h3 class="text-lg font-bold text-gray-900">2020: Digital Transformation</h3>
+                            <p class="mt-1 text-gray-600">Expanded focus to comprehensive digital transformation consulting, helping businesses adapt to rapidly changing technology landscapes.</p>
+                        </div>
+                    </div>
+
+                    <!-- Today -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="ml-6">
+                            <h3 class="text-lg font-bold text-gray-900">Today: Looking Ahead</h3>
+                            <p class="mt-1 text-gray-600">Silicon continues to innovate and expand, with a growing team of experts dedicated to delivering cutting-edge technology solutions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Team -->
+    <section id="team" class="py-16 bg-gray-50 scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Our Team</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Leadership Team
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    Meet the experienced professionals guiding Silicon's strategic direction.
+                </p>
+            </div>
+
+            <div class="mt-16 grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
+                <!-- Team Member 1 -->
+                <div class="team-member-card">
+                    <div class="space-y-4">
+                        <div class="aspect-w-3 aspect-h-3">
+                            <img class="object-cover shadow-lg rounded-lg h-64 w-full object-top" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="David Wilson">
+                        </div>
+                        <div class="space-y-2">
+                            <div class="text-lg leading-6 font-medium space-y-1">
+                                <h3 class="text-gray-900">David Wilson</h3>
+                                <p class="text-blue-600">CEO & Founder</p>
+                            </div>
+                            <div class="text-base">
+                                <p class="text-gray-500">With 25+ years of experience in the technology sector, David has guided Silicon from its founding to become a trusted technology partner.</p>
+                            </div>
+                            <div class="flex space-x-3">
+                                <a href="#" class="text-gray-400 hover:text-gray-500">
+                                    <i class="fab fa-linkedin text-lg"></i>
+                                </a>
+                                <a href="#" class="text-gray-400 hover:text-gray-500">
+                                    <i class="fab fa-twitter text-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="team-member-card">
+                    <div class="space-y-4">
+                        <div class="aspect-w-3 aspect-h-3">
+                            <img class="object-cover shadow-lg rounded-lg h-64 w-full object-top" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" alt="Jennifer Lee">
+                        </div>
+                        <div class="space-y-2">
+                            <div class="text-lg leading-6 font-medium space-y-1">
+                                <h3 class="text-gray-900">Jennifer Lee</h3>
+                                <p class="text-blue-600">CTO</p>
+                            </div>
+                            <div class="text-base">
+                                <p class="text-gray-500">Jennifer leads Silicon's technical strategy and innovation initiatives, bringing 15+ years of expertise in software development and systems engineering.</p>
+                            </div>
+                            <div class="flex space-x-3">
+                                <a href="#" class="text-gray-400 hover:text-gray-500">
+                                    <i class="fab fa-linkedin text-lg"></i>
+                                </a>
+                                <a href="#" class="text-gray-400 hover:text-gray-500">
+                                    <i class="fab fa-twitter text-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="team-member-card">
+                    <div class="space-y-4">
+                        <div class="aspect-w-3 aspect-h-3">
+                            <img class="object-cover shadow-lg rounded-lg h-64 w-full object-top" src="https://images.unsplash.com/photo-1556157382-97eda2f9e2bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Robert Zhang">
+                        </div>
+                        <div class="space-y-2">
+                            <div class="text-lg leading-6 font-medium space-y-1">
+                                <h3 class="text-gray-900">Robert Zhang</h3>
+                                <p class="text-blue-600">VP of Sales</p>
+                            </div>
+                            <div class="text-base">
+                                <p class="text-gray-500">With a strong background in enterprise sales, Robert has helped expand Silicon's client base and develop strategic partnerships worldwide.</p>
+                            </div>
+                            <div class="flex space-x-3">
+                                <a href="#" class="text-gray-400 hover:text-gray-500">
+                                    <i class="fab fa-linkedin text-lg"></i>
+                                </a>
+                                <a href="#" class="text-gray-400 hover:text-gray-500">
+                                    <i class="fab fa-twitter text-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="team-member-card">
+                    <div class="space-y-4">
+                        <div class="aspect-w-3 aspect-h-3">
+                            <img class="object-cover shadow-lg rounded-lg h-64 w-full object-top" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Amara Johnson">
+                        </div>
+                        <div class="space-y-2">
+                            <div class="text-lg leading-6 font-medium space-y-1">
+                                <h3 class="text-gray-900">Amara Johnson</h3>
+                                <p class="text-blue-600">VP of Operations</p>
+                            </div>
+                            <div class="text-base">
+                                <p class="text-gray-500">Amara oversees Silicon's day-to-day operations, ensuring efficient service delivery and continuous improvement of internal processes.</p>
+                            </div>
+                            <div class="flex space-x-3">
+                                <a href="#" class="text-gray-400 hover:text-gray-500">
+                                    <i class="fab fa-linkedin text-lg"></i>
+                                </a>
+                                <a href="#" class="text-gray-400 hover:text-gray-500">
+                                    <i class="fab fa-twitter text-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Corporate Responsibility -->
+    <section class="py-16 bg-white scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Corporate Responsibility</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Making a Positive Impact
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    We're committed to ethical business practices and giving back to our community.
+                </p>
+            </div>
+
+            <div class="mt-16">
+                <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+                    <!-- Sustainability -->
+                    <div class="glass-card p-8 rounded-lg">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white mx-auto">
+                            <i class="fas fa-leaf text-xl"></i>
+                        </div>
+                        <h3 class="mt-5 text-lg font-medium text-gray-900 text-center">Environmental Sustainability</h3>
+                        <p class="mt-2 text-base text-gray-500">
+                            We're committed to reducing our environmental footprint through energy-efficient operations, responsible disposal of electronic waste, and promoting sustainable technology solutions.
+                        </p>
+                    </div>
+
+                    <!-- Community Engagement --> <div class="glass-card p-8 rounded-lg">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white mx-auto">
+                            <i class="fas fa-hands-helping text-xl"></i>
+                        </div>
+                        <h3 class="mt-5 text-lg font-medium text-gray-900 text-center">Community Engagement</h3>
+                        <p class="mt-2 text-base text-gray-500">
+                            Silicon actively supports local communities through volunteer programs, technology donations to schools and non-profits, and mentorship opportunities for students.
+                        </p>
+                    </div>
+
+                    <!-- Diversity & Inclusion -->
+                    <div class="glass-card p-8 rounded-lg">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white mx-auto">
+                            <i class="fas fa-users text-xl"></i>
+                        </div>
+                        <h3 class="mt-5 text-lg font-medium text-gray-900 text-center">Diversity & Inclusion</h3>
+                        <p class="mt-2 text-base text-gray-500">
+                            We foster a diverse and inclusive workplace where all employees are valued and have equal opportunities to grow and contribute to our success.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-blue-600 scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+                    Ready to work with us?
+                </h2>
+                <p class="mt-4 text-lg leading-6 text-blue-100">
+                    Contact our team today to discuss how Silicon can help your business succeed.
+                </p>
+                <div class="mt-8 flex justify-center">
+                    <div class="inline-flex rounded-md shadow">
+                        <a href="contact.html" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50">
+                            Contact Us
+                        </a>
+                    </div>
+                    <div class="ml-3 inline-flex">
+                        <a href="services.html" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-700 hover:bg-blue-800">
+                            Explore Services
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center">
+                        <div class="h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">S</div>
+                        <span class="ml-2 text-xl font-semibold">Silicon</span>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-400">
+                        Silicon Computer and Communications PLC provides cutting-edge technology solutions to businesses across various sectors.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Products</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="products.html#banking" class="text-sm text-gray-400 hover:text-white">Banking Equipment</a></li>
+                        <li><a href="products.html#networking" class="text-sm text-gray-400 hover:text-white">Networking</a></li>
+                        <li><a href="products.html#servers" class="text-sm text-gray-400 hover:text-white">Server Solutions</a></li>
+                        <li><a href="products.html#security" class="text-sm text-gray-400 hover:text-white">Security Systems</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Services</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="services.html#cloud" class="text-sm text-gray-400 hover:text-white">Cloud Solutions</a></li>
+                        <li><a href="services.html#security" class="text-sm text-gray-400 hover:text-white">Cybersecurity</a></li>
+                        <li><a href="services.html#software" class="text-sm text-gray-400 hover:text-white">Software Development</a></li>
+                        <li><a href="services.html#consulting" class="text-sm text-gray-400 hover:text-white">IT Consulting</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Company</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="about.html" class="text-sm text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#team" class="text-sm text-gray-400 hover:text-white">Leadership</a></li>
+                        <li><a href="contact.html" class="text-sm text-gray-400 hover:text-white">Contact</a></li>
+                        <li><a href="contact.html#location" class="text-sm text-gray-400 hover:text-white">Location</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-800 pt-8">
+                <p class="text-sm text-gray-400 text-center">
+                    &copy; 2023 Silicon Computer and Communications PLC. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle function
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Scroll reveal animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            scrollRevealElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

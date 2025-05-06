@@ -1,0 +1,764 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Silicon Computer and Communications PLC - Explore our comprehensive range of hardware solutions, networking equipment, and technology products.">
+    <meta name="keywords" content="computer hardware, networking solutions, servers, printers, banking equipment, security systems">
+    <meta name="author" content="Silicon Computer and Communications PLC">
+    <meta property="og:title" content="Products - Silicon Computer and Communications PLC">
+    <meta property="og:description" content="Explore our comprehensive range of hardware solutions and technology products">
+    <meta property="og:type" content="website">
+    <title>Products | Silicon Computer and Communications PLC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--dark);
+            scroll-behavior: smooth;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+        
+        .page-header {
+            background: linear-gradient(rgba(30, 41, 59, 0.9), rgba(30, 41, 59, 0.8)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-card {
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .active-nav::after {
+            width: 100%;
+        }
+        
+        /* Accordion styles */
+        .accordion-header {
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex-shrink-0 flex items-center">
+                        <div class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">S</div>
+                        <span class="ml-2 text-xl font-semibold text-gray-900">Silicon</span>
+                    </a>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="index.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">Home</a>
+                    <a href="products.html" class="nav-link text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium active-nav">Products</a>
+                    <a href="services.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">Services</a>
+                    <a href="about.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">About</a>
+                    <a href="contact.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">Contact</a>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="index.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
+                <a href="products.html" class="bg-blue-50 border-blue-500 text-blue-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Products</a>
+                <a href="services.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Services</a>
+                <a href="about.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">About</a>
+                <a href="contact.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header text-white fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+            <div class="text-center">
+                <h1 class="text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl">
+                    Our Products
+                </h1>
+                <p class="mt-3 max-w-2xl mx-auto text-base text-gray-300 sm:mt-5 sm:text-lg md:mt-5 md:text-xl">
+                    Comprehensive technology solutions for every business need.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section - Expanded Catalog -->
+    <section id="products" class="py-16 bg-white scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Products</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Comprehensive Technology Solutions
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    Explore our extensive range of hardware and software solutions for every business need.
+                </p>
+            </div>
+
+            <div class="mt-16">
+                <!-- Banking & Office Equipment -->
+                <div class="mb-16" id="banking">
+                    <div class="accordion-header flex justify-between items-center cursor-pointer" onclick="toggleAccordion('banking')">
+                        <h3 class="text-xl font-semibold text-gray-900">Banking & Office Equipment</h3>
+                        <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300" id="banking-chevron"></i>
+                    </div>
+                    <div class="accordion-content mt-4" id="banking-content">
+                        <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                            <!-- Product 1 -->
+                            <div class="pt-6 product-card">
+                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
+                                    <div class="-mt-6">
+                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
+                                            <i class="fas fa-print text-xl"></i>
+                                        </div>
+                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Passbook Printers</h3>
+                                        <div class="mt-4 aspect-w-3 aspect-h-2">
+                                            <img class="object-cover shadow-lg rounded-lg" src="https://www.epson.com.sg/img/products/printers/PLQ-22CS_1.jpg" alt="Passbook printers">
+                                        </div>
+                                        <p class="mt-4 text-base text-gray-500">
+                                            High-speed, reliable passbook printers from Epson PLQ series, Olivetti, and Tally Dascom for banking applications.
+                                        </p>
+                                        <div class="mt-6">
+                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
+                                                Request Quote <span aria-hidden="true">→</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 2 -->
+                            <div class="pt-6 product-card">
+                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
+                                    <div class="-mt-6">
+                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
+                                            <i class="fas fa-cash-register text-xl"></i>
+                                        </div>
+                                        <h3 class="mt-4 text-lg font-medium text-gray-900">POS Terminals</h3>
+                                        <div class="mt-4 aspect-w-3 aspect-h-2">
+                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/71iFj3fKnAL._AC_SL1500_.jpg" alt="POS terminals">
+                                        </div>
+                                        <p class="mt-4 text-base text-gray-500">
+                                            Secure, EMV-compliant point-of-sale terminals with contactless payment support for retail and hospitality.
+                                        </p>
+                                        <div class="mt-6">
+                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
+                                                Request Quote <span aria-hidden="true">→</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 3 -->
+                            <div class="pt-6 product-card">
+                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
+                                    <div class="-mt-6">
+                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white">
+                                            <i class="fas fa-barcode text-xl"></i>
+                                        </div>
+                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Barcode Scanners</h3>
+                                        <div class="mt-4 aspect-w-3 aspect-h-2">
+                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/61diCK0ua1L._SL1500_.jpg" alt="Barcode scanners">
+                                        </div>
+                                        <p class="mt-4 text-base text-gray-500">
+                                            High-performance 1D/2D barcode scanners for retail, warehouse, and industrial applications.
+                                        </p>
+                                        <div class="mt-6">
+                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
+                                                Request Quote <span aria-hidden="true">→</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Networking & Communication -->
+                <div class="mb-16" id="networking">
+                    <div class="accordion-header flex justify-between items-center cursor-pointer" onclick="toggleAccordion('networking')">
+                        <h3 class="text-xl font-semibold text-gray-900">Networking & Communication</h3>
+                        <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300" id="networking-chevron"></i>
+                    </div>
+                    <div class="accordion-content mt-4" id="networking-content">
+                        <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                            <!-- Product 1 -->
+                            <div class="pt-6 product-card">
+                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
+                                    <div class="-mt-6">
+                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
+                                            <i class="fas fa-network-wired text-xl"></i>
+                                        </div>
+                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Enterprise Routers</h3>
+                                        <div class="mt-4 aspect-w-3 aspect-h-2">
+                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/71ej-wO3KbL._AC_SL1500_.jpg" alt="Enterprise routers">
+                                        </div>
+                                        <p class="mt-4 text-base text-gray-500">
+                                            High-performance routers from Cisco, MikroTik, and Ubiquiti for enterprise networks with advanced security features.
+                                        </p>
+                                        <div class="mt-6">
+                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
+                                                Request Quote <span aria-hidden="true">→</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 2 -->
+                            <div class="pt-6 product-card">
+                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
+                                    <div class="-mt-6">
+                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
+                                            <i class="fas fa-ethernet text-xl"></i>
+                                        </div>
+                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Network Switches</h3>
+                                        <div class="mt-4 aspect-w-3 aspect-h-2">
+                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/71Ck4-gswaL._AC_SL1500_.jpg" alt="Network switches">
+                                        </div>
+                                        <p class="mt-4 text-base text-gray-500">
+                                            Managed and unmanaged switches from 8 to 48 ports with PoE+ support for flexible network deployments.
+                                        </p>
+                                        <div class="mt-6">
+                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
+                                                Request Quote <span aria-hidden="true">→</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 3 -->
+                            <div class="pt-6 product-card">
+                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
+                                    <div class="-mt-6">
+                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white">
+                                            <i class="fas fa-wifi text-xl"></i>
+                                        </div>
+                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Wireless Access Points</h3>
+                                        <div class="mt-4 aspect-w-3 aspect-h-2">
+                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/61zjj2sgXML._AC_SL1500_.jpg" alt="Wireless access points">
+                                        </div>
+                                        <p class="mt-4 text-base text-gray-500">
+                                            Enterprise-grade Wi-Fi 6 access points with centralized management for high-density environments.
+                                        </p>
+                                        <div class="mt-6">
+                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
+                                                Request Quote <span aria-hidden="true">→</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Server & Data Center Solutions -->
+                <div class="mb-16" id="servers">
+                    <div class="accordion-header flex justify-between items-center cursor-pointer" onclick="toggleAccordion('servers')">
+                        <h3 class="text-xl font-semibold text-gray-900">Server & Data Center Solutions</h3>
+                        <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300" id="servers-chevron"></i>
+                    </div>
+                    <div class="accordion-content mt-4" id="servers-content">
+                        <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                            <!-- Product 1 -->
+                            <div class="pt-6 product-card">
+                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
+                                    <div class="-mt-6">
+                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
+                                            <i class="fas fa-server text-xl"></i>
+                                        </div>
+                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Rack Servers</h3>
+                                        <div class="mt-4 aspect-w-3 aspect-h-2">
+                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/81oUaU3rKzL._AC_SL1500_.jpg" alt="Rack servers">
+                                        </div>
+                                        <p class="mt-4 text-base text-gray-500">
+                                            Dell PowerEdge, HPE ProLiant, and Lenovo ThinkSystem rack servers for enterprise workloads and virtualization.
+                                        </p>
+                                        <div class="mt-6">
+                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
+                                                Request Quote <span aria-hidden="true">→</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 2 -->
+                            <div class="pt-6 product-card">
+                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
+                                    <div class="-mt-6">
+                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
+                                            <i class="fas fa-database text-xl"></i>
+                                        </div>
+                                        <h3 class="mt-4 text-lg font-medium text-gray-900">NAS/SAN Storage</h3>
+                                        <div class="mt-4 aspect-w-3 aspect-h-2">
+                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/71pYXaEzDhL._AC_SL1500_.jpg" alt="NAS/SAN storage">
+                                        </div>
+                                        <p class="mt-4 text-base text-gray-500">
+                                            High-capacity network-attached and storage area network solutions from Synology and QNAP.
+                                        </p>
+                                        <div class="mt-6">
+                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
+                                                Request Quote <span aria-hidden="true">→</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 3 -->
+                            <div class="pt-6 product-card">
+                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
+                                    <div class="-mt-6">
+                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white">
+                                            <i class="fas fa-fan text-xl"></i>
+                                        </div>
+                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Server Cabinets</h3>
+                                        <div class="mt-4 aspect-w-3 aspect-h-2">
+                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/51WSa7dqDUL._AC_SL1000_.jpg" alt="Server cabinets">
+                                        </div>
+                                        <p class="mt-4 text-base text-gray-500">
+                                            Secure, ventilated server racks and cabinets with cable management and cooling accessories.
+                                        </p>
+                                        <div class="mt-6">
+                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
+                                                Request Quote <span aria-hidden="true">→</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Power & Infrastructure -->
+                <div class="mb-16" id="power">
+                    <div class="accordion-header flex justify-between items-center cursor-pointer" onclick="toggleAccordion('power')">
+                        <h3 class="text-xl font-semibold text-gray-900">Power & Infrastructure</h3>
+                        <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300" id="power-chevron"></i>
+                    </div>
+                    <div class="accordion-content mt-4" id="power-content">
+                        <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                            <!-- Product 1 -->
+                            <div class="pt-6 product-card">
+                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
+                                    <div class="-mt-6">
+                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
+                                            <i class="fas fa-bolt text-xl"></i>
+                                        </div>
+                                        <h3 class="mt-4 text-lg font-medium text-gray-900">UPS Systems</h3>
+                                        <div class="mt-4 aspect-w-3 aspect-h-2">
+                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/71faruxhTkL._AC_SL1500_.jpg" alt="UPS systems">
+                                        </div>
+                                        <p class="mt-4 text-base text-gray-500">
+                                            Uninterruptible power supply systems from APC, Eaton, and CyberPower for critical infrastructure protection.
+                                        </p>
+                                        <div class="mt-6">
+                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
+                                                Request Quote <span aria-hidden="true">→</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 2 -->
+                            <div class="pt-6 product-card">
+                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
+                                    <div class="-mt-6">
+                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
+                                            <i class="fas fa-plug text-xl"></i>
+                                        </div>
+                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Power Distribution</h3>
+                                        <div class="mt-4 aspect-w-3 aspect-h-2">
+                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/61AvTTM-jrL._AC_SL1500_.jpg" alt="Power distribution">
+                                        </div>
+                                        <p class="mt-4 text-base text-gray-500">
+                                            Voltage stabilizers and intelligent PDUs with remote monitoring for data center power management.
+                                        </p>
+                                        <div class="mt-6">
+                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
+                                                Request Quote <span aria-hidden="true">→</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security & Access -->
+                <div class="mb-16" id="security">
+                    <div class="accordion-header flex justify-between items-center cursor-pointer" onclick="toggleAccordion('security')">
+                        <h3 class="text-xl font-semibold text-gray-900">Security & Access</h3>
+                        <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300" id="security-chevron"></i>
+                    </div>
+                    <div class="accordion-content mt-4" id="security-content">
+                        <div class="grid grid-cols-1 gap-8 sm:grid-cols -2 lg:grid-cols-3">
+                            <!-- Product 1 -->
+                            <div class="pt-6 product-card">
+                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
+                                    <div class="-mt-6">
+                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
+                                            <i class="fas fa-fingerprint text-xl"></i>
+                                        </div>
+                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Biometric Devices</h3>
+                                        <div class="mt-4 aspect-w-3 aspect-h-2">
+                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/61uXqkX+ZIL._SL1500_.jpg" alt="Biometric devices">
+                                        </div>
+                                        <p class="mt-4 text-base text-gray-500">
+                                            Fingerprint and facial recognition time & attendance systems for workforce management.
+                                        </p>
+                                        <div class="mt-6">
+                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
+                                                Request Quote <span aria-hidden="true">→</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 2 -->
+                            <div class="pt-6 product-card">
+                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
+                                    <div class="-mt-6">
+                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
+                                            <i class="fas fa-id-card text-xl"></i>
+                                        </div>
+                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Smart Card Readers</h3>
+                                        <div class="mt-4 aspect-w-3 aspect-h-2">
+                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/51bo80S4NHL._AC_SL1100_.jpg" alt="Smart card readers">
+                                        </div>
+                                        <p class="mt-4 text-base text-gray-500">
+                                            Contact and contactless smart card readers for secure access control and identity verification.
+                                        </p>
+                                        <div class="mt-6">
+                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
+                                                Request Quote <span aria-hidden="true">→</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 3 -->
+                            <div class="pt-6 product-card">
+                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
+                                    <div class="-mt-6">
+                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white">
+                                            <i class="fas fa-video text-xl"></i>
+                                        </div>
+                                        <h3 class="mt-4 text-lg font-medium text-gray-900">CCTV Systems</h3>
+                                        <div class="mt-4 aspect-w-3 aspect-h-2">
+                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/615MLAPyFOL._AC_SL1500_.jpg" alt="CCTV systems">
+                                        </div>
+                                        <p class="mt-4 text-base text-gray-500">
+                                            IP and analog surveillance kits with 4K cameras, NVRs, and monitoring software for comprehensive security.
+                                        </p>
+                                        <div class="mt-6">
+                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
+                                                Request Quote <span aria-hidden="true">→</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Software & Embedded Solutions -->
+                <div id="software">
+                    <div class="accordion-header flex justify-between items-center cursor-pointer" onclick="toggleAccordion('software')">
+                        <h3 class="text-xl font-semibold text-gray-900">Software & Embedded Solutions</h3>
+                        <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300" id="software-chevron"></i>
+                    </div>
+                    <div class="accordion-content mt-4" id="software-content">
+                        <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                            <!-- Product 1 -->
+                            <div class="pt-6 product-card">
+                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
+                                    <div class="-mt-6">
+                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
+                                            <i class="fas fa-laptop-code text-xl"></i>
+                                        </div>
+                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Banking Firmware</h3>
+                                        <div class="mt-4 aspect-w-3 aspect-h-2">
+                                            <img class="object-cover shadow-lg rounded-lg" src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Banking firmware">
+                                        </div>
+                                        <p class="mt-4 text-base text-gray-500">
+                                            Custom firmware solutions for banking devices including passbook printers and card readers.
+                                        </p>
+                                        <div class="mt-6">
+                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
+                                                Request Quote <span aria-hidden="true">→</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 2 -->
+                            <div class="pt-6 product-card">
+                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
+                                    <div class="-mt-6">
+                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
+                                            <i class="fas fa-network-wired text-xl"></i>
+                                        </div>
+                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Network Monitoring</h3>
+                                        <div class="mt-4 aspect-w-3 aspect-h-2">
+                                            <img class="object-cover shadow-lg rounded-lg" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1534&q=80" alt="Network monitoring">
+                                        </div>
+                                        <p class="mt-4 text-base text-gray-500">
+                                            Comprehensive network monitoring and management tools for enterprise IT infrastructure.
+                                        </p>
+                                        <div class="mt-6">
+                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
+                                                Request Quote <span aria-hidden="true">→</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 3 -->
+                            <div class="pt-6 product-card">
+                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
+                                    <div class="-mt-6">
+                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white">
+                                            <i class="fas fa-code-branch text-xl"></i>
+                                        </div>
+                                        <h3 class="mt-4 text-lg font-medium text-gray-900">API Integrations</h3>
+                                        <div class="mt-4 aspect-w-3 aspect-h-2">
+                                            <img class="object-cover shadow-lg rounded-lg" src="https://images.unsplash.com/photo-1580894742597-87bc8789db3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="API integrations">
+                                        </div>
+                                        <p class="mt-4 text-base text-gray-500">
+                                            Custom API development for banking and telecom systems integration and automation.
+                                        </p>
+                                        <div class="mt-6">
+                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
+                                                Request Quote <span aria-hidden="true">→</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-blue-600 scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+                    Need a customized solution?
+                </h2>
+                <p class="mt-4 text-lg leading-6 text-blue-100">
+                    Contact us today to discuss your specific requirements and get expert recommendations.
+                </p>
+                <div class="mt-8 flex justify-center">
+                    <div class="inline-flex rounded-md shadow">
+                        <a href="contact.html" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50">
+                            Request a Quote
+                        </a>
+                    </div>
+                    <div class="ml-3 inline-flex">
+                        <a href="services.html" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-700 hover:bg-blue-800">
+                            Explore Services
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center">
+                        <div class="h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">S</div>
+                        <span class="ml-2 text-xl font-semibold">Silicon</span>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-400">
+                        Silicon Computer and Communications PLC provides cutting-edge technology solutions to businesses across various sectors.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Products</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#banking" class="text-sm text-gray-400 hover:text-white">Banking Equipment</a></li>
+                        <li><a href="#networking" class="text-sm text-gray-400 hover:text-white">Networking</a></li>
+                        <li><a href="#servers" class="text-sm text-gray-400 hover:text-white">Server Solutions</a></li>
+                        <li><a href="#security" class="text-sm text-gray-400 hover:text-white">Security Systems</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Services</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="services.html#cloud" class="text-sm text-gray-400 hover:text-white">Cloud Solutions</a></li>
+                        <li><a href="services.html#security" class="text-sm text-gray-400 hover:text-white">Cybersecurity</a></li>
+                        <li><a href="services.html#software" class="text-sm text-gray-400 hover:text-white">Software Development</a></li>
+                        <li><a href="services.html#consulting" class="text-sm text-gray-400 hover:text-white">IT Consulting</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Company</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="about.html" class="text-sm text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="about.html#team" class="text-sm text-gray-400 hover:text-white">Leadership</a></li>
+                        <li><a href="contact.html" class="text-sm text-gray-400 hover:text-white">Contact</a></li>
+                        <li><a href="contact.html#location" class="text-sm text-gray-400 hover:text-white">Location</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-800 pt-8">
+                <p class="text-sm text-gray-400 text-center">
+                    &copy; 2023 Silicon Computer and Communications PLC. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle function
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Accordion functionality
+        function toggleAccordion(id) {
+            const content = document.getElementById(`${id}-content`);
+            const chevron = document.getElementById(`${id}-chevron`);
+            
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                chevron.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                chevron.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Scroll reveal animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            scrollRevealElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Fix for the accordion sections to ensure they start collapsed
+            const accordionContents = document.querySelectorAll('.accordion-content');
+            accordionContents.forEach(content => {
+                content.style.maxHeight = null;
+            });
+        });
+    </script>
+</body>
+</html>

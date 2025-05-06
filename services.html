@@ -1,0 +1,873 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Silicon Computer and Communications PLC - Expert IT services including cloud solutions, cybersecurity, custom software development, and comprehensive IT consulting.">
+    <meta name="keywords" content="IT services, cloud computing, cybersecurity, software development, managed IT services">
+    <meta name="author" content="Silicon Computer and Communications PLC">
+    <meta property="og:title" content="Services - Silicon Computer and Communications PLC">
+    <meta property="og:description" content="Expert IT services and solutions to optimize your technology infrastructure">
+    <meta property="og:type" content="website">
+    <title>Services | Silicon Computer and Communications PLC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--dark);
+            scroll-behavior: smooth;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+        
+        .page-header {
+            background: linear-gradient(rgba(30, 41, 59, 0.9), rgba(30, 41, 59, 0.8)), url('https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .active-nav::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex-shrink-0 flex items-center">
+                        <div class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">S</div>
+                        <span class="ml-2 text-xl font-semibold text-gray-900">Silicon</span>
+                    </a>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="index.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">Home</a>
+                    <a href="products.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">Products</a>
+                    <a href="services.html" class="nav-link text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium active-nav">Services</a>
+                    <a href="about.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">About</a>
+                    <a href="contact.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">Contact</a>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="index.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
+                <a href="products.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Products</a>
+                <a href="services.html" class="bg-blue-50 border-blue-500 text-blue-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Services</a>
+                <a href="about.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">About</a>
+                <a href="contact.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header text-white fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+            <div class="text-center">
+                <h1 class="text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl">
+                    Our Services
+                </h1>
+                <p class="mt-3 max-w-2xl mx-auto text-base text-gray-300 sm:mt-5 sm:text-lg md:mt-5 md:text-xl">
+                    Expert services to optimize your technology infrastructure and operations.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="py-16 bg-white scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Services</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Comprehensive IT Solutions
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    We offer a wide range of services designed to help your business leverage technology for growth and efficiency.
+                </p>
+            </div>
+
+            <div class="mt-16">
+                <div class="space-y-16">
+                    <!-- Cloud Solutions -->
+                    <div id="cloud" class="service-card glass-card p-8 rounded-lg">
+                        <div class="md:flex md:items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-16 w-16 rounded-md bg-blue-500 text-white">
+                                    <i class="fas fa-cloud text-3xl"></i>
+                                </div>
+                            </div>
+                            <div class="mt-6 md:mt-0 md:ml-6">
+                                <h3 class="text-2xl font-medium text-gray-900">Cloud Solutions</h3>
+                                <p class="mt-4 text-base text-gray-500">
+                                    End-to-end cloud migration, management, and optimization services across all major platforms including AWS, Azure, and Google Cloud.
+                                </p>
+                                
+                                <div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+                                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                                        <h4 class="font-medium text-lg text-gray-900">Cloud Migration</h4>
+                                        <ul class="mt-2 space-y-2 text-gray-500">
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Assessment & Planning
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Workload Migration
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Data Transfer & Security
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                                        <h4 class="font-medium text-lg text-gray-900">Cloud Management</h4>
+                                        <ul class="mt-2 space-y-2 text-gray-500">
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Resource Optimization
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                24/7 Monitoring
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Cost Management
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                                        <h4 class="font-medium text-lg text-gray-900">Hybrid Solutions</h4>
+                                        <ul class="mt-2 space-y-2 text-gray-500">
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Private/Public Integration
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Multi-Cloud Strategy
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Cloud Connectivity
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-6">
+                                    <a href="contact.html" class="inline-flex items-center text-blue-600 hover:text-blue-500">
+                                        Request Consultation
+                                        <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cybersecurity -->
+                    <div id="security" class="service-card glass-card p-8 rounded-lg">
+                        <div class="md:flex md:items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-16 w-16 rounded-md bg-green-500 text-white">
+                                    <i class="fas fa-shield-alt text-3xl"></i>
+                                </div>
+                            </div>
+                            <div class="mt-6 md:mt-0 md:ml-6">
+                                <h3 class="text-2xl font-medium text-gray-900">Cybersecurity</h3>
+                                <p class="mt-4 text-base text-gray-500">
+                                    Comprehensive security assessments, threat detection, and protection solutions to safeguard your digital assets and infrastructure.
+                                </p>
+                                
+                                <div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+                                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                                        <h4 class="font-medium text-lg text-gray-900">Security Assessments</h4>
+                                        <ul class="mt-2 space-y-2 text-gray-500">
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Vulnerability Scanning
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Penetration Testing
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Risk Analysis
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                                        <h4 class="font-medium text-lg text-gray-900">Security Implementation</h4>
+                                        <ul class="mt-2 space-y-2 text-gray-500">
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Firewall Configuration
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Endpoint Protection
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Intrusion Detection
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                                        <h4 class="font-medium text-lg text-gray-900">Security Management</h4>
+                                        <ul class="mt-2 space-y-2 text-gray-500">
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                24/7 Monitoring
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Incident Response
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Compliance Management
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-6">
+                                    <a href="contact.html" class="inline-flex items-center text-blue-600 hover:text-blue-500">
+                                        Request Assessment
+                                        <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Software Development -->
+                    <div id="software" class="service-card glass-card p-8 rounded-lg">
+                        <div class="md:flex md:items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-16 w-16 rounded-md bg-purple-500 text-white">
+                                    <i class="fas fa-code text-3xl"></i>
+                                </div>
+                            </div>
+                            <div class="mt-6 md:mt-0 md:ml-6">
+                                <h3 class="text-2xl font-medium text-gray-900">Custom Software</h3>
+                                <p class="mt-4 text-base text-gray-500">
+                                    Bespoke application development tailored to your business needs, with agile methodologies and modern technology stacks.
+                                </p>
+                                
+                                <div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+                                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                                        <h4 class="font-medium text-lg text-gray-900">Application Development</h4>
+                                        <ul class="mt-2 space-y-2 text-gray-500">
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Web Applications
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Mobile Apps
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Enterprise Software
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                                        <h4 class="font-medium text-lg text-gray-900">Integration Services</h4>
+                                        <ul class="mt-2 space-y-2 text-gray-500">
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                API Development
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                System Integration
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Legacy Modernization
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                                        <h4 class="font-medium text-lg text-gray-900">DevOps Services</h4>
+                                        <ul class="mt-2 space-y-2 text-gray-500">
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                CI/CD Implementation
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Container Orchestration
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Infrastructure as Code
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-6">
+                                    <a href="contact.html" class="inline-flex items-center text-blue-600 hover:text-blue-500">
+                                        Discuss Project
+                                        <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Managed IT Services -->
+                    <div id="consulting" class="service-card glass-card p-8 rounded-lg">
+                        <div class="md:flex md:items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-16 w-16 rounded-md bg-yellow-500 text-white">
+                                    <i class="fas fa-headset text-3xl"></i>
+                                </div>
+                            </div>
+                            <div class="mt-6 md:mt-0 md:ml-6">
+                                <h3 class="text-2xl font-medium text-gray-900">Managed IT</h3>
+                                <p class="mt-4 text-base text-gray-500">
+                                    Proactive monitoring, maintenance, and support services to ensure your IT infrastructure runs smoothly 24/7.
+                                </p>
+                                
+                                <div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+                                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                                        <h4 class="font-medium text-lg text-gray-900">Help Desk Support</h4>
+                                        <ul class="mt-2 space-y-2 text-gray-500">
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                24/7 Technical Support
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Remote Troubleshooting
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Service Desk Management
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                                        <h4 class="font-medium text-lg text-gray-900">Proactive Maintenance</h4>
+                                        <ul class="mt-2 space-y-2 text-gray-500">
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Patch Management
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Performance Monitoring
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Preventative Maintenance
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                                        <h4 class="font-medium text-lg text-gray-900">Business Continuity</h4>
+                                        <ul class="mt-2 space-y-2 text-gray-500">
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Backup Solutions
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Disaster Recovery
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Business Continuity Planning
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-6">
+                                    <a href="contact.html" class="inline-flex items-center text-blue-600 hover:text-blue-500">
+                                        Get Proposal
+                                        <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Infrastructure Services -->
+                    <div id="infrastructure" class="service-card glass-card p-8 rounded-lg">
+                        <div class="md:flex md:items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-16 w-16 rounded-md bg-red-500 text-white">
+                                    <i class="fas fa-server text-3xl"></i>
+                                </div>
+                            </div>
+                            <div class="mt-6 md:mt-0 md:ml-6">
+                                <h3 class="text-2xl font-medium text-gray-900">Infrastructure Services</h3>
+                                <p class="mt-4 text-base text-gray-500">
+                                    Design, implementation, and management of robust, scalable IT infrastructure that supports your business goals.
+                                </p>
+                                
+                                <div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+                                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                                        <h4 class="font-medium text-lg text-gray-900">Network Design</h4>
+                                        <ul class="mt-2 space-y-2 text-gray-500">
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                LAN/WAN Architecture
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Network Optimization
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Wireless Solutions
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                                        <h4 class="font-medium text-lg text-gray-900">Server Management</h4>
+                                        <ul class="mt-2 space-y-2 text-gray-500">
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Server Deployment
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Virtualization
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Performance Tuning
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-white p-5 rounded-lg shadow-sm">
+                                        <h4 class="font-medium text-lg text-gray-900">Data Center Services</h4>
+                                        <ul class="mt-2 space-y-2 text-gray-500">
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Colocation Services
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green- 500 mr-2"></i>
+                                                Power Management
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                                Cooling Solutions
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-6">
+                                    <a href="contact.html" class="inline-flex items-center text-blue-600 hover:text-blue-500">
+                                        Learn More
+                                        <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Process -->
+    <section class="py-16 bg-gray-50 scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Our Process</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    How We Deliver Results
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    A proven methodology that ensures successful delivery of every project.
+                </p>
+            </div>
+
+            <div class="mt-16">
+                <div class="relative">
+                    <!-- Process steps for desktop -->
+                    <div class="hidden md:block">
+                        <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                            <div class="w-full border-t border-gray-300"></div>
+                        </div>
+                        <div class="relative flex justify-between">
+                            <div>
+                                <div class="relative flex items-center justify-center bg-white h-12 w-12 rounded-full border border-gray-300 text-blue-500">
+                                    <span class="text-lg font-semibold">1</span>
+                                </div>
+                                <div class="mt-4">
+                                    <h3 class="text-lg font-medium text-gray-900">Consultation</h3>
+                                    <p class="mt-2 text-sm text-gray-500">
+                                        We start with a thorough assessment of your needs and goals.
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="relative flex items-center justify-center bg-white h-12 w-12 rounded-full border border-gray-300 text-blue-500">
+                                    <span class="text-lg font-semibold">2</span>
+                                </div>
+                                <div class="mt-4">
+                                    <h3 class="text-lg font-medium text-gray-900">Strategy</h3>
+                                    <p class="mt-2 text-sm text-gray-500">
+                                        We develop a tailored roadmap based on best practices and your requirements.
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="relative flex items-center justify-center bg-white h-12 w-12 rounded-full border border-gray-300 text-blue-500">
+                                    <span class="text-lg font-semibold">3</span>
+                                </div>
+                                <div class="mt-4">
+                                    <h3 class="text-lg font-medium text-gray-900">Implementation</h3>
+                                    <p class="mt-2 text-sm text-gray-500">
+                                        Our experts execute the plan with precision and attention to detail.
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="relative flex items-center justify-center bg-white h-12 w-12 rounded-full border border-gray-300 text-blue-500">
+                                    <span class="text-lg font-semibold">4</span>
+                                </div>
+                                <div class="mt-4">
+                                    <h3 class="text-lg font-medium text-gray-900">Management</h3>
+                                    <p class="mt-2 text-sm text-gray-500">
+                                        Ongoing support, optimization, and monitoring ensure long-term success.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Process steps for mobile -->
+                    <div class="md:hidden">
+                        <div class="space-y-8">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <div class="flex items-center justify-center bg-white h-12 w-12 rounded-full border border-gray-300 text-blue-500">
+                                        <span class="text-lg font-semibold">1</span>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-lg font-medium text-gray-900">Consultation</h3>
+                                    <p class="mt-2 text-sm text-gray-500">
+                                        We start with a thorough assessment of your needs and goals.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <div class="flex items-center justify-center bg-white h-12 w-12 rounded-full border border-gray-300 text-blue-500">
+                                        <span class="text-lg font-semibold">2</span>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-lg font-medium text-gray-900">Strategy</h3>
+                                    <p class="mt-2 text-sm text-gray-500">
+                                        We develop a tailored roadmap based on best practices and your requirements.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <div class="flex items-center justify-center bg-white h-12 w-12 rounded-full border border-gray-300 text-blue-500">
+                                        <span class="text-lg font-semibold">3</span>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-lg font-medium text-gray-900">Implementation</h3>
+                                    <p class="mt-2 text-sm text-gray-500">
+                                        Our experts execute the plan with precision and attention to detail.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <div class="flex items-center justify-center bg-white h-12 w-12 rounded-full border border-gray-300 text-blue-500">
+                                        <span class="text-lg font-semibold">4</span>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-lg font-medium text-gray-900">Management</h3>
+                                    <p class="mt-2 text-sm text-gray-500">
+                                        Ongoing support, optimization, and monitoring ensure long-term success.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-white scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Testimonials</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    What Our Clients Say
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="space-y-10 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10 md:space-y-0">
+                    <!-- Testimonial 1 -->
+                    <div class="glass-card p-6 rounded-lg">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                                    <i class="fas fa-user text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <div class="text-lg font-medium text-gray-900">Sarah Johnson</div>
+                                <div class="text-sm text-gray-500">CTO, TechCorp</div>
+                                <div class="mt-2 text-gray-600">
+                                    <p>"Silicon's enterprise servers have transformed our data center operations. The performance and reliability are unmatched in the industry."</p>
+                                </div>
+                                <div class="mt-3 flex">
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="glass-card p-6 rounded-lg">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                    <i class="fas fa-user text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <div class="text-lg font-medium text-gray-900">Michael Chen</div>
+                                <div class="text-sm text-gray-500">Director of IT, GlobalNet</div>
+                                <div class="mt-2 text-gray-600">
+                                    <p>"The cybersecurity solutions implemented by Silicon have significantly reduced our vulnerability to threats while improving compliance."</p>
+                                </div>
+                                <div class="mt-3 flex">
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star-half-alt text-yellow-400"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-blue-600 scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+                    Ready to transform your business?
+                </h2>
+                <p class="mt-4 text-lg leading-6 text-blue-100">
+                    Contact us today to discuss how our services can help you achieve your technology goals.
+                </p>
+                <div class="mt-8 flex justify-center">
+                    <div class="inline-flex rounded-md shadow">
+                        <a href="contact.html" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50">
+                            Schedule Consultation
+                        </a>
+                    </div>
+                    <div class="ml-3 inline-flex">
+                        <a href="about.html" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-700 hover:bg-blue-800">
+                            Learn About Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center">
+                        <div class="h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">S</div>
+                        <span class="ml-2 text-xl font-semibold">Silicon</span>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-400">
+                        Silicon Computer and Communications PLC provides cutting-edge technology solutions to businesses across various sectors.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Products</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="products.html#banking" class="text-sm text-gray-400 hover:text-white">Banking Equipment</a></li>
+                        <li><a href="products.html#networking" class="text-sm text-gray-400 hover:text-white">Networking</a></li>
+                        <li><a href="products.html#servers" class="text-sm text-gray-400 hover:text-white">Server Solutions</a></li>
+                        <li><a href="products.html#security" class="text-sm text-gray-400 hover:text-white">Security Systems</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Services</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#cloud" class="text-sm text-gray-400 hover:text-white">Cloud Solutions</a></li>
+                        <li><a href="#security" class="text-sm text-gray-400 hover:text-white">Cybersecurity</a></li>
+                        <li><a href="#software" class="text-sm text-gray-400 hover:text-white">Software Development</a></li>
+                        <li><a href="#consulting" class="text-sm text-gray-400 hover:text-white">IT Consulting</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Company</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="about.html" class="text-sm text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="about.html#team" class="text-sm text-gray-400 hover:text-white">Leadership</a></li>
+                        <li><a href="contact.html" class="text-sm text-gray-400 hover:text-white">Contact</a></li>
+                        <li><a href="contact.html#location" class="text-sm text-gray-400 hover:text-white">Location</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-800 pt-8">
+                <p class="text-sm text-gray-400 text-center">
+                    &copy; 2023 Silicon Computer and Communications PLC. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle function
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Scroll reveal animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            scrollRevealElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
