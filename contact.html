@@ -235,7 +235,7 @@
         </div>
     </section>
 
-    <!-- Contact Form with FormSubmit integration -->
+    <!-- Contact Form with FormSubmit integration and inline success message -->
     <section class="py-16 bg-gray-50 scroll-reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl mx-auto">
@@ -250,12 +250,26 @@
                 </div>
 
                 <div class="mt-12 glass-card p-8 rounded-lg">
-                    <form id="contactForm" action="https://formsubmit.co/jappyzfatty@mail.com" method="POST" class="grid grid-cols-1 gap-6">
+                    <!-- Success message (hidden by default) -->
+                    <div id="successMessage" class="hidden bg-green-50 border-l-4 border-green-400 p-4 mb-6">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-check-circle text-green-400"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm text-green-700">
+                                    Your message has been sent. Thank you!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact form -->
+                    <form id="contactForm" action="https://formsubmit.co/ajax/jappyzfatty@mail.com" method="POST" class="grid grid-cols-1 gap-6">
                         <!-- FormSubmit configuration -->
                         <input type="hidden" name="_subject" value="New Silicon Computers Contact Form Submission">
                         <input type="hidden" name="_template" value="table">
                         <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <!-- Name -->
@@ -322,7 +336,7 @@
 
                         <!-- Submit Button -->
                         <div class="mt-4">
-                            <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            <button type="submit" id="submitButton" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                 Send Message
                             </button>
                         </div>
@@ -485,7 +499,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Company</h3>
+                    <h3 class="text- sm font-semibold text-gray-300 tracking-wider uppercase">Company</h3>
                     <ul class="mt-4 space-y-2">
                         <li><a href="about.html" class="text-sm text-gray-400 hover:text-white">About Us</a></li>
                         <li><a href="about.html#team" class="text-sm text-gray-400 hover:text-white">Leadership</a></li>
@@ -508,6 +522,49 @@
         document.getElementById('mobile-menu-button').addEventListener('click', function() {
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenu.classList.toggle('hidden');
+        });
+
+        // Form submission with AJAX
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = this;
+            const submitBtn = document.getElementById('submitButton');
+            const formData = new FormData(form);
+            
+            // Disable submit button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+            
+            fetch('https://formsubmit.co/ajax/jappyzfatty@mail.com', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Show success message
+                document.getElementById('successMessage').classList.remove('hidden');
+                
+                // Reset form
+                form.reset();
+                
+                // Reset button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Send Message';
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    document.getElementById('successMessage').classList.add('hidden');
+                }, 5000);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Sorry, there was an error sending your message. Please try again later.');
+                
+                // Reset button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Send Message';
+            });
         });
 
         // Scroll reveal animations
