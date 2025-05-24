@@ -12,71 +12,59 @@
     <title>About | Silicon Computer and Communications PLC</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
         :root {
-            --primary: #3b82f6;
-            --primary-dark: #2563eb;
-            --secondary: #10b981;
-            --dark: #1e293b;
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --secondary: #06b6d4;
+            --dark: #0f172a;
             --light: #f8fafc;
+            --accent: #7c3aed;
         }
         
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f1f5f9;
+            background-color: var(--light);
             color: var(--dark);
             scroll-behavior: smooth;
         }
         
         .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px 0 rgba(31, 38, 135, 0.15);
         }
         
         .page-header {
-            background: linear-gradient(rgba(30, 41, 59, 0.9), rgba(30, 41, 59, 0.8)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.9)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-        }
-        
-        .fade-in {
-            animation: fadeIn 1s ease-in-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease-out;
-        }
-        
-        .scroll-reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .team-member-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .team-member-card {
-            transition: all 0.3s ease;
+            background-attachment: fixed;
         }
         
         .nav-link {
             position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--primary);
         }
         
         .nav-link::after {
@@ -84,34 +72,93 @@
             position: absolute;
             width: 0;
             height: 2px;
-            bottom: -2px;
-            left: 0;
+            bottom: 0;
+            left: 50%;
             background-color: var(--primary);
-            transition: width 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
         }
         
         .nav-link:hover::after {
-            width: 100%;
+            width: 80%;
+        }
+        
+        .active-nav {
+            color: var(--primary);
+            background-color: rgba(2, 132, 199, 0.1);
         }
         
         .active-nav::after {
+            width: 80%;
+        }
+        
+        .team-member-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 24px;
+            overflow: hidden;
+        }
+        
+        .team-member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .team-member-card img {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .team-member-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .feature-icon {
+            position: relative;
+            z-index: 1;
+            transition: all 0.4s ease;
+        }
+        
+        .feature-icon::before {
+            content: '';
+            position: absolute;
             width: 100%;
+            height: 100%;
+            background: currentColor;
+            border-radius: 16px;
+            opacity: 0.1;
+            z-index: -1;
+            transform: rotate(-5deg) scale(0.95);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .feature-icon:hover::before {
+            transform: rotate(0deg) scale(1.1);
+            opacity: 0.15;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
         }
         
         .timeline-item {
             position: relative;
             padding-left: 40px;
             margin-bottom: 32px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .timeline-item::before {
             content: '';
             position: absolute;
-            width: 1px;
+            width: 2px;
             height: calc(100% + 16px);
-            background-color: #e5e7eb;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
             left: 10px;
             top: 0;
+            opacity: 0.3;
         }
         
         .timeline-item:last-child::before {
@@ -123,32 +170,88 @@
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
             left: 0;
             top: 0;
+            box-shadow: 0 4px 10px rgba(124, 58, 237, 0.2);
+        }
+        
+        .timeline-item:hover {
+            transform: translateX(10px);
+        }
+        
+        .timeline-item:hover .timeline-dot {
+            transform: scale(1.2);
+            box-shadow: 0 6px 15px rgba(124, 58, 237, 0.3);
+        }
+        
+        /* Modern Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+        
+        /* Mobile Menu Animation */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .mobile-menu-active {
+            animation: slideDown 0.3s ease forwards;
         }
     </style>
 </head>
 <body class="min-h-screen">
     <!-- Navigation -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
+    <nav class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
-                    <a href="index.html" class="flex-shrink-0 flex items-center">
-                        <div class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">S</div>
-                        <span class="ml-2 text-xl font-semibold text-gray-900">Silicon</span>
+                    <a href="index.html" class="flex-shrink-0 flex items-center space-x-3">
+                        <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center text-white font-bold shadow-lg shadow-blue-500/20">
+                            <span class="text-xl">S</span>
+                        </div>
+                        <span class="ml-2 text-xl font-semibold gradient-text">Silicon</span>
                     </a>
                 </div>
                 <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
-                    <a href="index.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">Home</a>
-                    <a href="products.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">Products</a>
-                    <a href="services.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">Services</a>
-                    <a href="about.html" class="nav-link text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium active-nav">About</a>
-                    <a href="contact.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">Contact</a>
+                    <a href="index.html" class="nav-link text-gray-600 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </a>
+                    <a href="products.html" class="nav-link text-gray-600 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+                        <i class="fas fa-box mr-2"></i>Products
+                    </a>
+                    <a href="services.html" class="nav-link text-gray-600 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+                        <i class="fas fa-cogs mr-2"></i>Services
+                    </a>
+                    <a href="about.html" class="nav-link text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium active-nav">
+                        <i class="fas fa-info-circle mr-2"></i>About
+                    </a>
+                    <a href="contact.html" class="nav-link text-gray-600 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+                        <i class="fas fa-envelope mr-2"></i>Contact
+                    </a>
                 </div>
                 <div class="-mr-2 flex items-center md:hidden">
-                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-lg text-gray-500 hover:text-gray-600 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-colors">
                         <span class="sr-only">Open main menu</span>
                         <i class="fas fa-bars"></i>
                     </button>
@@ -158,18 +261,28 @@
         
         <!-- Mobile menu -->
         <div class="hidden md:hidden" id="mobile-menu">
-            <div class="pt-2 pb-3 space-y-1">
-                <a href="index.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
-                <a href="products.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Products</a>
-                <a href="services.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Services</a>
-                <a href="about.html" class="bg-blue-50 border-blue-500 text-blue-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">About</a>
-                <a href="contact.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Contact</a>
+            <div class="pt-2 pb-3 space-y-1 bg-white shadow-lg rounded-b-2xl">
+                <a href="index.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors flex items-center">
+                    <i class="fas fa-home mr-2"></i>Home
+                </a>
+                <a href="products.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors flex items-center">
+                    <i class="fas fa-box mr-2"></i>Products
+                </a>
+                <a href="services.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors flex items-center">
+                    <i class="fas fa-cogs mr-2"></i>Services
+                </a>
+                <a href="about.html" class="bg-blue-50 border-blue-500 text-blue-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors flex items-center">
+                    <i class="fas fa-info-circle mr-2"></i>About
+                </a>
+                <a href="contact.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors flex items-center">
+                    <i class="fas fa-envelope mr-2"></i>Contact
+                </a>
             </div>
         </div>
     </nav>
 
     <!-- Page Header -->
-    <section class="page-header text-white fade-in">
+    <section class="page-header text-white" data-aos="fade-down" data-aos-duration="1000">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
             <div class="text-center">
                 <h1 class="text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl">
@@ -178,55 +291,84 @@
                 <p class="mt-3 max-w-2xl mx-auto text-base text-gray-300 sm:mt-5 sm:text-lg md:mt-5 md:text-xl">
                     Our story, mission, and the team powering innovation.
                 </p>
+                <div class="mt-8 flex justify-center gap-4">
+                    <a href="#team" class="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-xl text-blue-600 bg-white hover:bg-blue-50 transition-all duration-300 shadow-xl shadow-blue-500/20 group">
+                        Meet Our Team
+                        <i class="fas fa-users ml-2 transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                    <a href="contact.html" class="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-xl text-white border-2 border-white hover:bg-white hover:text-blue-600 transition-all duration-300 group">
+                        Get in Touch
+                        <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Company Overview -->
-    <section class="py-16 bg-white scroll-reveal">
+    <section class="py-16 bg-white" data-aos="fade-up" data-aos-duration="1000">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:grid lg:grid-cols-12 lg:gap-8">
-                <div class="lg:col-span-5">
-                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                <div class="lg:col-span-5" data-aos="fade-right" data-aos-delay="100">
+                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl gradient-text">
                         Our Story
                     </h2>
-                    <p class="mt-3 text-lg text-gray-500">
+                    <p class="mt-6 text-lg text-gray-600">
                         Silicon Computer and Communications PLC has been at the forefront of technology innovation since our founding in 1995.
                     </p>
-                    <p class="mt-3 text-lg text-gray-500">
+                    <p class="mt-4 text-lg text-gray-600">
                         Starting as a small hardware provider, we've grown into a full-service technology solutions company serving clients across multiple industries and geographies.
                     </p>
-                    <p class="mt-3 text-lg text-gray-500">
+                    <p class="mt-4 text-lg text-gray-600">
                         Throughout our journey, we've remained committed to delivering cutting-edge solutions with exceptional service, building long-term relationships with our clients and partners.
                     </p>
-                    <div class="mt-6">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 bg-blue-500 rounded-md p-2">
-                                <i class="fas fa-bullseye text-white text-xl"></i>
-                            </div>
-                            <div class="ml-3">
-                                <h3 class="text-lg font-medium text-gray-900">Our Mission</h3>
-                                <p class="mt-1 text-gray-500">
-                                    To empower businesses through innovative technology solutions that drive growth, efficiency, and competitive advantage.
-                                </p>
+                    <div class="mt-8 space-y-6">
+                        <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="200">
+                            <div class="flex items-center">
+                                <div class="feature-icon h-12 w-12 rounded-xl bg-gradient-to-br from-blue-600 to-blue-400 text-white flex items-center justify-center shadow-lg shadow-blue-500/20">
+                                    <i class="fas fa-bullseye text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-xl font-semibold text-gray-900">Our Mission</h3>
+                                    <p class="mt-2 text-gray-600">
+                                        To empower businesses through innovative technology solutions that drive growth, efficiency, and competitive advantage.
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        <div class="mt-6 flex items-center">
-                            <div class="flex-shrink-0 bg-green-500 rounded-md p-2">
-                                <i class="fas fa-eye text-white text-xl"></i>
-                            </div>
-                            <div class="ml-3">
-                                <h3 class="text-lg font-medium text-gray-900">Our Vision</h3>
-                                <p class="mt-1 text-gray-500">
-                                    To be the most trusted partner for technology solutions, recognized for our expertise, reliability, and customer-centric approach.
-                                </p>
+                        <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="300">
+                            <div class="flex items-center">
+                                <div class="feature-icon h-12 w-12 rounded-xl bg-gradient-to-br from-purple-600 to-purple-400 text-white flex items-center justify-center shadow-lg shadow-purple-500/20">
+                                    <i class="fas fa-eye text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-xl font-semibold text-gray-900">Our Vision</h3>
+                                    <p class="mt-2 text-gray-600">
+                                        To be the most trusted partner for technology solutions, recognized for our expertise, reliability, and customer-centric approach.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="mt-12 relative lg:mt-0 lg:col-span-7">
-                    <div class="bg-white rounded-lg overflow-hidden">
-                        <img class="w-full h-auto" src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Silicon office">
+                <div class="mt-12 relative lg:mt-0 lg:col-span-7" data-aos="fade-left" data-aos-delay="200">
+                    <div class="glass-card overflow-hidden">
+                        <img class="w-full h-auto rounded-2xl transform transition-transform duration-700 hover:scale-105" src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Silicon office">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent rounded-2xl"></div>
+                    </div>
+                    <div class="mt-8 grid grid-cols-3 gap-4 text-center">
+                        <div class="glass-card p-4" data-aos="fade-up" data-aos-delay="300">
+                            <div class="text-3xl font-bold gradient-text">25+</div>
+                            <div class="mt-1 text-sm text-gray-600">Years Experience</div>
+                        </div>
+                        <div class="glass-card p-4" data-aos="fade-up" data-aos-delay="400">
+                            <div class="text-3xl font-bold gradient-text">500+</div>
+                            <div class="mt-1 text-sm text-gray-600">Clients Served</div>
+                        </div>
+                        <div class="glass-card p-4" data-aos="fade-up" data-aos-delay="500">
+                            <div class="text-3xl font-bold gradient-text">100%</div>
+                            <div class="mt-1 text-sm text-gray-600">Client Satisfaction</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -234,61 +376,57 @@
     </section>
 
     <!-- Company Values -->
-    <section class="py-16 bg-gray-50 scroll-reveal">
+    <section class="py-20 bg-gray-50" data-aos="fade-up" data-aos-duration="1000">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
                 <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Our Values</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl gradient-text">
                     Principles That Guide Us
                 </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                <p class="mt-4 max-w-2xl text-xl text-gray-600 lg:mx-auto">
                     These core values drive everything we do and define how we work with our clients and each other.
                 </p>
             </div>
 
             <div class="mt-16">
                 <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-                    <!-- Value 1 -->
-                    <div class="glass-card p-8 rounded-lg">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white mx-auto">
-                            <i class="fas fa-star text-xl"></i>
+                    <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="100">
+                        <div class="feature-icon h-14 w-14 rounded-xl bg-gradient-to-br from-blue-600 to-blue-400 text-white flex items-center justify-center shadow-lg shadow-blue-500/20 mb-6">
+                            <i class="fas fa-star text-2xl"></i>
                         </div>
-                        <h3 class="mt-6 text-xl font-medium text-gray-900 text-center">Excellence</h3>
-                        <p class="mt-2 text-base text-gray-500 text-center">
-                            We strive for excellence in everything we do, from product quality to service delivery and client satisfaction.
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Excellence</h3>
+                        <p class="text-gray-600">
+                            We strive for excellence in everything we do, from the solutions we deliver to the service we provide.
                         </p>
                     </div>
 
-                    <!-- Value 2 -->
-                    <div class="glass-card p-8 rounded-lg">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white mx-auto">
-                            <i class="fas fa-lightbulb text-xl"></i>
+                    <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon h-14 w-14 rounded-xl bg-gradient-to-br from-purple-600 to-purple-400 text-white flex items-center justify-center shadow-lg shadow-purple-500/20 mb-6">
+                            <i class="fas fa-handshake text-2xl"></i>
                         </div>
-                        <h3 class="mt-6 text-xl font-medium text-gray-900 text-center">Innovation</h3>
-                        <p class="mt-2 text-base text-gray-500 text-center">
-                            We continuously pursue innovative solutions and embrace emerging technologies to stay ahead of industry trends.
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Integrity</h3>
+                        <p class="text-gray-600">
+                            We conduct business with the highest standards of honesty, transparency, and ethical behavior.
                         </p>
                     </div>
 
-                    <!-- Value 3 -->
-                    <div class="glass-card p-8 rounded-lg">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white mx-auto">
-                            <i class="fas fa-users text-xl"></i>
+                    <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-icon h-14 w-14 rounded-xl bg-gradient-to-br from-green-600 to-green-400 text-white flex items-center justify-center shadow-lg shadow-green-500/20 mb-6">
+                            <i class="fas fa-lightbulb text-2xl"></i>
                         </div>
-                        <h3 class="mt-6 text-xl font-medium text-gray-900 text-center">Partnership</h3>
-                        <p class="mt-2 text-base text-gray-500 text-center">
-                            We build lasting relationships with our clients, partners, and employees based on trust, respect, and mutual success.
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Innovation</h3>
+                        <p class="text-gray-600">
+                            We embrace change and continuously seek innovative solutions to meet evolving challenges.
                         </p>
                     </div>
 
-                    <!-- Value 4 -->
-                    <div class="glass-card p-8 rounded-lg">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-yellow-500 text-white mx-auto">
-                            <i class="fas fa-balance-scale text-xl"></i>
+                    <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="400">
+                        <div class="feature-icon h-14 w-14 rounded-xl bg-gradient-to-br from-red-600 to-red-400 text-white flex items-center justify-center shadow-lg shadow-red-500/20 mb-6">
+                            <i class="fas fa-users text-2xl"></i>
                         </div>
-                        <h3 class="mt-6 text-xl font-medium text-gray-900 text-center">Integrity</h3>
-                        <p class="mt-2 text-base text-gray-500 text-center">
-                            We operate with the highest ethical standards, honesty, and transparency in all our business practices.
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Partnership</h3>
+                        <p class="text-gray-600">
+                            We build lasting relationships with our clients, working together as trusted partners.
                         </p>
                     </div>
                 </div>
@@ -379,119 +517,111 @@
     </section>
 
     <!-- Leadership Team -->
-    <section id="team" class="py-16 bg-gray-50 scroll-reveal">
+    <section id="team" class="py-20 bg-gray-50" data-aos="fade-up" data-aos-duration="1000">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
                 <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Our Team</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl gradient-text">
                     Leadership Team
                 </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                <p class="mt-4 max-w-2xl text-xl text-gray-600 lg:mx-auto">
                     Meet the experienced professionals guiding Silicon's strategic direction.
                 </p>
             </div>
 
-            <div class="mt-16 grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
                 <!-- Team Member 1 -->
-                <div class="team-member-card">
-                    <div class="space-y-4">
-                        <div class="aspect-w-3 aspect-h-3">
-                            <img class="object-cover shadow-lg rounded-lg h-64 w-full object-top" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="David Wilson">
-                        </div>
-                        <div class="space-y-2">
-                            <div class="text-lg leading-6 font-medium space-y-1">
-                                <h3 class="text-gray-900">David Wilson</h3>
-                                <p class="text-blue-600">CEO & Founder</p>
-                            </div>
-                            <div class="text-base">
-                                <p class="text-gray-500">With 25+ years of experience in the technology sector, David has guided Silicon from its founding to become a trusted technology partner.</p>
-                            </div>
-                            <div class="flex space-x-3">
-                                <a href="#" class="text-gray-400 hover:text-gray-500">
-                                    <i class="fab fa-linkedin text-lg"></i>
-                                </a>
-                                <a href="#" class="text-gray-400 hover:text-gray-500">
-                                    <i class="fab fa-twitter text-lg"></i>
-                                </a>
-                            </div>
+                <div class="team-member-card glass-card p-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative overflow-hidden rounded-xl mb-6">
+                        <img class="w-full h-64 object-cover object-top transform transition-transform duration-700" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="David Wilson">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900">David Wilson</h3>
+                        <p class="text-blue-600 font-medium mt-1">CEO & Founder</p>
+                        <p class="mt-4 text-gray-600">With 25+ years of experience in the technology sector, David has guided Silicon from its founding to become a trusted technology partner.</p>
+                        <div class="mt-6 flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Team Member 2 -->
-                <div class="team-member-card">
-                    <div class="space-y-4">
-                        <div class="aspect-w-3 aspect-h-3">
-                            <img class="object-cover shadow-lg rounded-lg h-64 w-full object-top" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" alt="Jennifer Lee">
-                        </div>
-                        <div class="space-y-2">
-                            <div class="text-lg leading-6 font-medium space-y-1">
-                                <h3 class="text-gray-900">Jennifer Lee</h3>
-                                <p class="text-blue-600">CTO</p>
-                            </div>
-                            <div class="text-base">
-                                <p class="text-gray-500">Jennifer leads Silicon's technical strategy and innovation initiatives, bringing 15+ years of expertise in software development and systems engineering.</p>
-                            </div>
-                            <div class="flex space-x-3">
-                                <a href="#" class="text-gray-400 hover:text-gray-500">
-                                    <i class="fab fa-linkedin text-lg"></i>
-                                </a>
-                                <a href="#" class="text-gray-400 hover:text-gray-500">
-                                    <i class="fab fa-twitter text-lg"></i>
-                                </a>
-                            </div>
+                <div class="team-member-card glass-card p-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative overflow-hidden rounded-xl mb-6">
+                        <img class="w-full h-64 object-cover object-top transform transition-transform duration-700" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" alt="Jennifer Lee">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900">Jennifer Lee</h3>
+                        <p class="text-blue-600 font-medium mt-1">CTO</p>
+                        <p class="mt-4 text-gray-600">Jennifer leads Silicon's technical strategy and innovation initiatives, bringing 15+ years of expertise in software development and systems engineering.</p>
+                        <div class="mt-6 flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Team Member 3 -->
-                <div class="team-member-card">
-                    <div class="space-y-4">
-                        <div class="aspect-w-3 aspect-h-3">
-                            <img class="object-cover shadow-lg rounded-lg h-64 w-full object-top" src="https://images.unsplash.com/photo-1556157382-97eda2f9e2bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Robert Zhang">
-                        </div>
-                        <div class="space-y-2">
-                            <div class="text-lg leading-6 font-medium space-y-1">
-                                <h3 class="text-gray-900">Robert Zhang</h3>
-                                <p class="text-blue-600">VP of Sales</p>
-                            </div>
-                            <div class="text-base">
-                                <p class="text-gray-500">With a strong background in enterprise sales, Robert has helped expand Silicon's client base and develop strategic partnerships worldwide.</p>
-                            </div>
-                            <div class="flex space-x-3">
-                                <a href="#" class="text-gray-400 hover:text-gray-500">
-                                    <i class="fab fa-linkedin text-lg"></i>
-                                </a>
-                                <a href="#" class="text-gray-400 hover:text-gray-500">
-                                    <i class="fab fa-twitter text-lg"></i>
-                                </a>
-                            </div>
+                <div class="team-member-card glass-card p-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative overflow-hidden rounded-xl mb-6">
+                        <img class="w-full h-64 object-cover object-top transform transition-transform duration-700" src="https://images.unsplash.com/photo-1556157382-97eda2f9e2bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Robert Zhang">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900">Robert Zhang</h3>
+                        <p class="text-blue-600 font-medium mt-1">VP of Sales</p>
+                        <p class="mt-4 text-gray-600">With a strong background in enterprise sales, Robert has helped expand Silicon's client base and develop strategic partnerships worldwide.</p>
+                        <div class="mt-6 flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Team Member 4 -->
-                <div class="team-member-card">
-                    <div class="space-y-4">
-                        <div class="aspect-w-3 aspect-h-3">
-                            <img class="object-cover shadow-lg rounded-lg h-64 w-full object-top" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Amara Johnson">
-                        </div>
-                        <div class="space-y-2">
-                            <div class="text-lg leading-6 font-medium space-y-1">
-                                <h3 class="text-gray-900">Amara Johnson</h3>
-                                <p class="text-blue-600">VP of Operations</p>
-                            </div>
-                            <div class="text-base">
-                                <p class="text-gray-500">Amara oversees Silicon's day-to-day operations, ensuring efficient service delivery and continuous improvement of internal processes.</p>
-                            </div>
-                            <div class="flex space-x-3">
-                                <a href="#" class="text-gray-400 hover:text-gray-500">
-                                    <i class="fab fa-linkedin text-lg"></i>
-                                </a>
-                                <a href="#" class="text-gray-400 hover:text-gray-500">
-                                    <i class="fab fa-twitter text-lg"></i>
-                                </a>
-                            </div>
+                <div class="team-member-card glass-card p-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="relative overflow-hidden rounded-xl mb-6">
+                        <img class="w-full h-64 object-cover object-top transform transition-transform duration-700" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Amara Johnson">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900">Amara Johnson</h3>
+                        <p class="text-blue-600 font-medium mt-1">VP of Operations</p>
+                        <p class="mt-4 text-gray-600">Amara oversees Silicon's day-to-day operations, ensuring efficient service delivery and continuous improvement of internal processes.</p>
+                        <div class="mt-6 flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -500,77 +630,120 @@
     </section>
 
     <!-- Corporate Responsibility -->
-    <section class="py-16 bg-white scroll-reveal">
+    <section class="py-20 bg-white" data-aos="fade-up" data-aos-duration="1000">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
                 <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Corporate Responsibility</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl gradient-text">
                     Making a Positive Impact
                 </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                <p class="mt-4 max-w-2xl text-xl text-gray-600 lg:mx-auto">
                     We're committed to ethical business practices and giving back to our community.
                 </p>
             </div>
 
-            <div class="mt-16">
-                <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-                    <!-- Sustainability -->
-                    <div class="glass-card p-8 rounded-lg">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white mx-auto">
-                            <i class="fas fa-leaf text-xl"></i>
-                        </div>
-                        <h3 class="mt-5 text-lg font-medium text-gray-900 text-center">Environmental Sustainability</h3>
-                        <p class="mt-2 text-base text-gray-500">
-                            We're committed to reducing our environmental footprint through energy-efficient operations, responsible disposal of electronic waste, and promoting sustainable technology solutions.
-                        </p>
+            <div class="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3">
+                <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon h-14 w-14 rounded-xl bg-gradient-to-br from-green-600 to-green-400 text-white flex items-center justify-center shadow-lg shadow-green-500/20 mb-6">
+                        <i class="fas fa-leaf text-2xl"></i>
                     </div>
-
-                    <!-- Community Engagement --> <div class="glass-card p-8 rounded-lg">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white mx-auto">
-                            <i class="fas fa-hands-helping text-xl"></i>
-                        </div>
-                        <h3 class="mt-5 text-lg font-medium text-gray-900 text-center">Community Engagement</h3>
-                        <p class="mt-2 text-base text-gray-500">
-                            Silicon actively supports local communities through volunteer programs, technology donations to schools and non-profits, and mentorship opportunities for students.
-                        </p>
-                    </div>
-
-                    <!-- Diversity & Inclusion -->
-                    <div class="glass-card p-8 rounded-lg">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white mx-auto">
-                            <i class="fas fa-users text-xl"></i>
-                        </div>
-                        <h3 class="mt-5 text-lg font-medium text-gray-900 text-center">Diversity & Inclusion</h3>
-                        <p class="mt-2 text-base text-gray-500">
-                            We foster a diverse and inclusive workplace where all employees are valued and have equal opportunities to grow and contribute to our success.
-                        </p>
-                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Environmental Stewardship</h3>
+                    <p class="text-gray-600">
+                        We're committed to reducing our environmental impact through sustainable practices and green technology initiatives.
+                    </p>
+                    <ul class="mt-6 space-y-3">
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Energy-efficient operations
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            E-waste recycling programs
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Green technology solutions
+                        </li>
+                    </ul>
                 </div>
+
+                <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon h-14 w-14 rounded-xl bg-gradient-to-br from-blue-600 to-blue-400 text-white flex items-center justify-center shadow-lg shadow-blue-500/20 mb-6">
+                        <i class="fas fa-hands-helping text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Community Engagement</h3>
+                    <p class="text-gray-600">
+                        We actively participate in community development through various initiatives and support programs.
+                    </p>
+                    <ul class="mt-6 space-y-3">
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            STEM education support
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Local charity partnerships
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Volunteer programs
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon h-14 w-14 rounded-xl bg-gradient-to-br from-purple-600 to-purple-400 text-white flex items-center justify-center shadow-lg shadow-purple-500/20 mb-6">
+                        <i class="fas fa-shield-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Ethical Business</h3>
+                    <p class="text-gray-600">
+                        We maintain the highest standards of business ethics and corporate governance in all our operations.
+                    </p>
+                    <ul class="mt-6 space-y-3">
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Transparent practices
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Fair trade policies
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Data privacy protection
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <a href="contact.html" class="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-xl text-white bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 transition-all duration-300 shadow-lg shadow-blue-500/20 group">
+                    Learn More About Our Initiatives
+                    <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Call to Action -->
-    <section class="py-16 bg-blue-600 scroll-reveal">
+    <section class="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800" data-aos="fade-up" data-aos-duration="1000">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
                     Ready to work with us?
                 </h2>
-                <p class="mt-4 text-lg leading-6 text-blue-100">
-                    Contact our team today to discuss how Silicon can help your business succeed.
+                <p class="mt-4 text-xl text-blue-100">
+                    Join the growing list of businesses that trust Silicon for their technology needs.
                 </p>
-                <div class="mt-8 flex justify-center">
-                    <div class="inline-flex rounded-md shadow">
-                        <a href="contact.html" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50">
-                            Contact Us
-                        </a>
-                    </div>
-                    <div class="ml-3 inline-flex">
-                        <a href="services.html" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-700 hover:bg-blue-800">
-                            Explore Services
-                        </a>
-                    </div>
+                <div class="mt-10 flex justify-center gap-4">
+                    <a href="contact.html" class="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-xl text-blue-600 bg-white hover:bg-blue-50 transition-all duration-300 shadow-xl shadow-blue-500/20 group">
+                        Contact Us
+                        <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                    <a href="services.html" class="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-xl text-white border-2 border-white hover:bg-white hover:text-blue-600 transition-all duration-300 group">
+                        Our Services
+                        <i class="fas fa-cogs ml-2 transition-transform group-hover:translate-x-1"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -582,38 +755,88 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="col-span-1 md:col-span-1">
                     <div class="flex items-center">
-                        <div class="h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">S</div>
+                        <div class="h-10 w-10 rounded-full bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center text-white font-bold">S</div>
                         <span class="ml-2 text-xl font-semibold">Silicon</span>
                     </div>
-                    <p class="mt-4 text-sm text-gray-400">
+                    <p class="mt-4 text-gray-400">
                         Silicon Computer and Communications PLC provides cutting-edge technology solutions to businesses across various sectors.
                     </p>
+                    <div class="mt-6 flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
                 </div>
                 <div>
                     <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Products</h3>
-                    <ul class="mt-4 space-y-2">
-                        <li><a href="products.html#banking" class="text-sm text-gray-400 hover:text-white">Banking Equipment</a></li>
-                        <li><a href="products.html#networking" class="text-sm text-gray-400 hover:text-white">Networking</a></li>
-                        <li><a href="products.html#servers" class="text-sm text-gray-400 hover:text-white">Server Solutions</a></li>
-                        <li><a href="products.html#security" class="text-sm text-gray-400 hover:text-white">Security Systems</a></li>
+                    <ul class="mt-4 space-y-3">
+                        <li><a href="products.html#banking" class="text-gray-400 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right mr-2 text-xs transition-transform group-hover:translate-x-1"></i>
+                            Banking Equipment
+                        </a></li>
+                        <li><a href="products.html#networking" class="text-gray-400 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right mr-2 text-xs transition-transform group-hover:translate-x-1"></i>
+                            Networking
+                        </a></li>
+                        <li><a href="products.html#servers" class="text-gray-400 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right mr-2 text-xs transition-transform group-hover:translate-x-1"></i>
+                            Server Solutions
+                        </a></li>
+                        <li><a href="products.html#security" class="text-gray-400 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right mr-2 text-xs transition-transform group-hover:translate-x-1"></i>
+                            Security Systems
+                        </a></li>
                     </ul>
                 </div>
                 <div>
                     <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Services</h3>
-                    <ul class="mt-4 space-y-2">
-                        <li><a href="services.html#cloud" class="text-sm text-gray-400 hover:text-white">Cloud Solutions</a></li>
-                        <li><a href="services.html#security" class="text-sm text-gray-400 hover:text-white">Cybersecurity</a></li>
-                        <li><a href="services.html#software" class="text-sm text-gray-400 hover:text-white">Software Development</a></li>
-                        <li><a href="services.html#consulting" class="text-sm text-gray-400 hover:text-white">IT Consulting</a></li>
+                    <ul class="mt-4 space-y-3">
+                        <li><a href="services.html#cloud" class="text-gray-400 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right mr-2 text-xs transition-transform group-hover:translate-x-1"></i>
+                            Cloud Solutions
+                        </a></li>
+                        <li><a href="services.html#security" class="text-gray-400 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right mr-2 text-xs transition-transform group-hover:translate-x-1"></i>
+                            Cybersecurity
+                        </a></li>
+                        <li><a href="services.html#software" class="text-gray-400 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right mr-2 text-xs transition-transform group-hover:translate-x-1"></i>
+                            Software Development
+                        </a></li>
+                        <li><a href="services.html#consulting" class="text-gray-400 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right mr-2 text-xs transition-transform group-hover:translate-x-1"></i>
+                            IT Consulting
+                        </a></li>
                     </ul>
                 </div>
                 <div>
                     <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Company</h3>
-                    <ul class="mt-4 space-y-2">
-                        <li><a href="about.html" class="text-sm text-gray-400 hover:text-white">About Us</a></li>
-                        <li><a href="#team" class="text-sm text-gray-400 hover:text-white">Leadership</a></li>
-                        <li><a href="contact.html" class="text-sm text-gray-400 hover:text-white">Contact</a></li>
-                        <li><a href="contact.html#location" class="text-sm text-gray-400 hover:text-white">Location</a></li>
+                    <ul class="mt-4 space-y-3">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right mr-2 text-xs transition-transform group-hover:translate-x-1"></i>
+                            About Us
+                        </a></li>
+                        <li><a href="about.html#team" class="text-gray-400 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right mr-2 text-xs transition-transform group-hover:translate-x-1"></i>
+                            Leadership
+                        </a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right mr-2 text-xs transition-transform group-hover:translate-x-1"></i>
+                            Contact
+                        </a></li>
+                        <li><a href="contact.html#location" class="text-gray-400 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right mr-2 text-xs transition-transform group-hover:translate-x-1"></i>
+                            Location
+                        </a></li>
                     </ul>
                 </div>
             </div>
@@ -626,29 +849,56 @@
     </footer>
 
     <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 50
+        });
+
         // Mobile menu toggle function
         document.getElementById('mobile-menu-button').addEventListener('click', function() {
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenu.classList.toggle('hidden');
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('mobile-menu-active');
+            }
         });
 
-        // Scroll reveal animations
-        document.addEventListener('DOMContentLoaded', function() {
-            const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
             
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
+            if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target) && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('mobile-menu-active');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenu.classList.remove('mobile-menu-active');
                     }
-                });
-            }, {
-                threshold: 0.1
-            });
-            
-            scrollRevealElements.forEach(element => {
-                observer.observe(element);
+                }
             });
         });
     </script>
