@@ -13,56 +13,69 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
         
         :root {
-            --primary: #3b82f6;
-            --primary-dark: #2563eb;
-            --secondary: #10b981;
-            --dark: #1e293b;
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0ea5e9;
+            --dark: #0f172a;
             --light: #f8fafc;
         }
         
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f1f5f9;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--light);
             color: var(--dark);
             scroll-behavior: smooth;
         }
         
         .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.12);
         }
         
         .gradient-bg {
-            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
         }
         
         .hero-section {
-            background: linear-gradient(rgba(30, 41, 59, 0.9), rgba(30, 41, 59, 0.8)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.9)), url('https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=1920');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            background-attachment: fixed;
         }
         
         .fade-in {
-            animation: fadeIn 1s ease-in-out;
+            animation: fadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
         }
         
         .scroll-reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease-out;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .scroll-reveal.active {
@@ -70,17 +83,18 @@
             transform: translateY(0);
         }
         
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        .product-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .product-card {
-            transition: all 0.3s ease;
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.1);
         }
         
         .nav-link {
             position: relative;
+            transition: color 0.3s ease;
         }
         
         .nav-link::after {
@@ -91,7 +105,7 @@
             bottom: -2px;
             left: 0;
             background-color: var(--primary);
-            transition: width 0.3s ease;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .nav-link:hover::after {
@@ -102,40 +116,121 @@
             width: 100%;
         }
         
-        /* Supplier logo hover effect */
         .supplier-logo {
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             filter: grayscale(100%);
-            opacity: 0.7;
+            opacity: 0.6;
         }
         
         .supplier-logo:hover {
             filter: grayscale(0);
             opacity: 1;
-            transform: scale(1.05);
+            transform: scale(1.08);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: -100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: all 0.5s;
+        }
+
+        .btn-primary:hover::after {
+            left: 100%;
+        }
+
+        .testimonial-card {
+            transition: all 0.4s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .section-heading {
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .feature-icon {
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-icon::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: currentColor;
+            border-radius: 12px;
+            opacity: 0.1;
+            z-index: -1;
+            transform: rotate(-5deg);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-icon:hover::before {
+            transform: rotate(0deg);
         }
     </style>
 </head>
 <body class="min-h-screen">
     <!-- Navigation -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
+    <nav class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
-                    <a href="index.html" class="flex-shrink-0 flex items-center">
-                        <div class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">S</div>
-                        <span class="ml-2 text-xl font-semibold text-gray-900">Silicon</span>
+                    <a href="index.html" class="flex-shrink-0 flex items-center space-x-3">
+                        <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-blue-600 to-blue-500 flex items-center justify-center text-white font-bold shadow-lg shadow-blue-500/20">S</div>
+                        <span class="ml-2 text-xl font-semibold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">Silicon</span>
                     </a>
                 </div>
                 <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
                     <a href="index.html" class="nav-link text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium active-nav">Home</a>
-                    <a href="products.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">Products</a>
-                    <a href="services.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">Services</a>
-                    <a href="about.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">About</a>
-                    <a href="contact.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">Contact</a>
+                    <a href="products.html" class="nav-link text-gray-600 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">Products</a>
+                    <a href="services.html" class="nav-link text-gray-600 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">Services</a>
+                    <a href="about.html" class="nav-link text-gray-600 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">About</a>
+                    <a href="contact.html" class="nav-link text-gray-600 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">Contact</a>
                 </div>
                 <div class="-mr-2 flex items-center md:hidden">
-                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-lg text-gray-500 hover:text-gray-600 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-colors">
                         <span class="sr-only">Open main menu</span>
                         <i class="fas fa-bars"></i>
                     </button>
@@ -146,41 +241,43 @@
         <!-- Mobile menu -->
         <div class="hidden md:hidden" id="mobile-menu">
             <div class="pt-2 pb-3 space-y-1">
-                <a href="index.html" class="bg-blue-50 border-blue-500 text-blue-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
-                <a href="products.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Products</a>
-                <a href="services.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Services</a>
-                <a href="about.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">About</a>
-                <a href="contact.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Contact</a>
+                <a href="index.html" class="bg-blue-50 border-l-4 border-blue-500 text-blue-700 block pl-3 pr-4 py-2 text-base font-medium transition-colors">Home</a>
+                <a href="products.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors">Products</a>
+                <a href="services.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors">Services</a>
+                <a href="about.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors">About</a>
+                <a href="contact.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors">Contact</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero-section text-white fade-in">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 md:py-36">
             <div class="lg:grid lg:grid-cols-12 lg:gap-8">
                 <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
-                    <h1 class="text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl">
+                    <h1 class="text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl lg:text-7xl">
                         <span class="block">Infinite Solutions</span>
-                        <span class="block text-blue-400">For Your Business</span>
+                        <span class="block text-blue-400 mt-2">For Your Business</span>
                     </h1>
-                    <p class="mt-3 text-base text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                    <p class="mt-6 text-base text-gray-300 sm:text-lg sm:max-w-xl sm:mx-auto md:text-xl lg:mx-0">
                         Silicon delivers cutting-edge technology solutions to power your digital transformation journey.
                     </p>
-                    <div class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
+                    <div class="mt-10 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
                         <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="products.html" class="w-full sm:w-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10 transition duration-300">
+                            <a href="products.html" class="btn-primary inline-flex items-center justify-center text-base font-medium">
                                 Explore Products
+                                <i class="fas fa-arrow-right ml-2"></i>
                             </a>
-                            <a href="contact.html" class="w-full sm:w-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10 transition duration-300">
+                            <a href="contact.html" class="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-base font-medium rounded-lg text-white hover:bg-white hover:text-gray-900 transition-all duration-300">
                                 Contact Us
+                                <i class="fas fa-envelope ml-2"></i>
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
-                    <div class="relative mx-auto w-full rounded-lg shadow-lg glass-card overflow-hidden">
-                        <img class="w-full" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Tech solutions">
+                    <div class="relative mx-auto w-full rounded-2xl shadow-2xl glass-card overflow-hidden">
+                        <img class="w-full" src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Tech solutions">
                     </div>
                 </div>
             </div>
@@ -188,33 +285,33 @@
     </section>
 
     <!-- Client Logos -->
-    <section class="bg-white py-12 scroll-reveal">
+    <section class="bg-white py-16 scroll-reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="text-center text-sm font-semibold uppercase text-gray-500 tracking-wide">
+            <p class="text-center text-sm font-semibold uppercase text-gray-500 tracking-wider mb-8">
                 Trusted by innovative companies worldwide
             </p>
-            <div class="mt-6 grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5">
-                <div class="col-span-1 flex justify-center items-center">
+            <div class="grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5">
+                <div class="col-span-1 flex justify-center items-center supplier-logo">
                     <div class="h-12 flex items-center">
                         <span class="text-xl font-bold text-gray-700">TechCorp</span>
                     </div>
                 </div>
-                <div class="col-span-1 flex justify-center items-center">
+                <div class="col-span-1 flex justify-center items-center supplier-logo">
                     <div class="h-12 flex items-center">
                         <span class="text-xl font-bold text-gray-700">GlobalNet</span>
                     </div>
                 </div>
-                <div class="col-span-1 flex justify-center items-center">
+                <div class="col-span-1 flex justify-center items-center supplier-logo">
                     <div class="h-12 flex items-center">
                         <span class="text-xl font-bold text-gray-700">DataSys</span>
                     </div>
                 </div>
-                <div class="col-span-1 flex justify-center items-center">
+                <div class="col-span-1 flex justify-center items-center supplier-logo">
                     <div class="h-12 flex items-center">
                         <span class="text-xl font-bold text-gray-700">CloudNine</span>
                     </div>
                 </div>
-                <div class="col-span-1 flex justify-center items-center">
+                <div class="col-span-1 flex justify-center items-center supplier-logo">
                     <div class="h-12 flex items-center">
                         <span class="text-xl font-bold text-gray-700">InnoTech</span>
                     </div>
@@ -223,207 +320,188 @@
         </div>
     </section>
 
-    <!-- Global Suppliers Section - Simplified -->
-    <section class="py-16 bg-gray-50 scroll-reveal">
+    <!-- Global Suppliers Section -->
+    <section class="py-20 bg-gray-50 scroll-reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:text-center">
+            <div class="lg:text-center mb-16">
                 <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Partnerships</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl section-heading">
                     Global Partners & Suppliers
                 </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                <p class="mt-8 max-w-2xl text-xl text-gray-500 lg:mx-auto">
                     We partner with world-leading technology manufacturers to deliver premium solutions.
                 </p>
             </div>
 
-            <div class="mt-12">
-                <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6">
-                    <div class="supplier-logo bg-white p-4 rounded-lg flex items-center justify-center h-20">
-                        <span class="font-semibold">Epson</span>
-                    </div>
-                    <div class="supplier-logo bg-white p-4 rounded-lg flex items-center justify-center h-20">
-                        <span class="font-semibold">Cisco</span>
-                    </div>
-                    <div class="supplier-logo bg-white p-4 rounded-lg flex items-center justify-center h-20">
-                        <span class="font-semibold">Dell</span>
-                    </div>
-                    <div class="supplier-logo bg-white p-4 rounded-lg flex items-center justify-center h-20">
-                        <span class="font-semibold">HPE</span>
-                    </div>
-                    <div class="supplier-logo bg-white p-4 rounded-lg flex items-center justify-center h-20">
-                        <span class="font-semibold">Fortinet</span>
-                    </div>
-                    <div class="supplier-logo bg-white p-4 rounded-lg flex items-center justify-center h-20">
-                        <span class="font-semibold">Lenovo</span>
-                    </div>
-                    <div class="supplier-logo bg-white p-4 rounded-lg flex items-center justify-center h-20">
-                        <span class="font-semibold">APC</span>
-                    </div>
-                    <div class="supplier-logo bg-white p-4 rounded-lg flex items-center justify-center h-20">
-                        <span class="font-semibold">TP-Link</span>
-                    </div>
+            <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-8">
+                <div class="supplier-logo bg-white p-6 rounded-xl flex items-center justify-center h-24 shadow-lg shadow-gray-100/50">
+                    <span class="font-semibold text-gray-800">Epson</span>
+                </div>
+                <div class="supplier-logo bg-white p-6 rounded-xl flex items-center justify-center h-24 shadow-lg shadow-gray-100/50">
+                    <span class="font-semibold text-gray-800">Cisco</span>
+                </div>
+                <div class="supplier-logo bg-white p-6 rounded-xl flex items-center justify-center h-24 shadow-lg shadow-gray-100/50">
+                    <span class="font-semibold text-gray-800">Dell</span>
+                </div>
+                <div class="supplier-logo bg-white p-6 rounded-xl flex items-center justify-center h-24 shadow-lg shadow-gray-100/50">
+                    <span class="font-semibold text-gray-800">HPE</span>
+                </div>
+                <div class="supplier-logo bg-white p-6 rounded-xl flex items-center justify-center h-24 shadow-lg shadow-gray-100/50">
+                    <span class="font-semibold text-gray-800">Fortinet</span>
+                </div>
+                <div class="supplier-logo bg-white p-6 rounded-xl flex items-center justify-center h-24 shadow-lg shadow-gray-100/50">
+                    <span class="font-semibold text-gray-800">Lenovo</span>
+                </div>
+                <div class="supplier-logo bg-white p-6 rounded-xl flex items-center justify-center h-24 shadow-lg shadow-gray-100/50">
+                    <span class="font-semibold text-gray-800">APC</span>
+                </div>
+                <div class="supplier-logo bg-white p-6 rounded-xl flex items-center justify-center h-24 shadow-lg shadow-gray-100/50">
+                    <span class="font-semibold text-gray-800">TP-Link</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Featured Products & Services -->
-    <section class="py-16 bg-white scroll-reveal">
+    <section class="py-20 bg-white scroll-reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:text-center">
+            <div class="lg:text-center mb-16">
                 <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">What We Offer</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl section-heading">
                     Featured Solutions
                 </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                <p class="mt-8 max-w-2xl text-xl text-gray-500 lg:mx-auto">
                     Explore our popular products and services
                 </p>
             </div>
 
-            <div class="mt-16">
-                <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-                    <!-- Featured Product 1 -->
-                    <div class="pt-6 product-card">
-                        <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
-                            <div class="-mt-6">
-                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
-                                    <i class="fas fa-server text-xl"></i>
-                                </div>
-                                <h3 class="mt-4 text-lg font-medium text-gray-900">Enterprise Servers</h3>
-                                <div class="mt-4 aspect-w-3 aspect-h-2">
-                                    <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/81oUaU3rKzL._AC_SL1500_.jpg" alt="Enterprise servers">
-                                </div>
-                                <p class="mt-4 text-base text-gray-500">
-                                    High-performance rack servers and data center solutions for business-critical applications.
-                                </p>
-                                <div class="mt-6">
-                                    <a href="products.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
-                                        View Products <span aria-hidden="true">→</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+                <!-- Featured Product 1 -->
+                <div class="product-card glass-card p-8 rounded-2xl">
+                    <div class="feature-icon flex items-center justify-center h-14 w-14 rounded-xl bg-blue-600 text-white mb-6">
+                        <i class="fas fa-server text-xl"></i>
                     </div>
-
-                    <!-- Featured Product 2 -->
-                    <div class="pt-6 product-card">
-                        <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
-                            <div class="-mt-6">
-                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
-                                    <i class="fas fa-network-wired text-xl"></i>
-                                </div>
-                                <h3 class="mt-4 text-lg font-medium text-gray-900">Networking</h3>
-                                <div class="mt-4 aspect-w-3 aspect-h-2">
-                                    <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/71Ck4-gswaL._AC_SL1500_.jpg" alt="Networking equipment">
-                                </div>
-                                <p class="mt-4 text-base text-gray-500">
-                                    Enterprise-grade routers, switches, and wireless solutions for reliable connectivity.
-                                </p>
-                                <div class="mt-6">
-                                    <a href="products.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
-                                        View Products <span aria-hidden="true">→</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Enterprise Servers</h3>
+                    <div class="aspect-w-16 aspect-h-9 mb-6">
+                        <img class="object-cover rounded-xl shadow-lg" src="https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Enterprise servers">
                     </div>
-
-                    <!-- Featured Service -->
-                    <div class="pt-6 product-card">
-                        <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
-                            <div class="-mt-6">
-                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white">
-                                    <i class="fas fa-shield-alt text-xl"></i>
-                                </div>
-                                <h3 class="mt-4 text-lg font-medium text-gray-900">Cybersecurity</h3>
-                                <div class="mt-4 aspect-w-3 aspect-h-2">
-                                    <img class="object-cover shadow-lg rounded-lg" src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Cybersecurity services">
-                                </div>
-                                <p class="mt-4 text-base text-gray-500">
-                                    Comprehensive security assessments and protection solutions to safeguard your digital assets.
-                                </p>
-                                <div class="mt-6">
-                                    <a href="services.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
-                                        View Services <span aria-hidden="true">→</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <p class="text-gray-600 mb-6">
+                        High-performance rack servers and data center solutions for business-critical applications.
+                    </p>
+                    <a href="products.html" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors">
+                        View Products
+                        <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                    </a>
                 </div>
-                
-                <div class="mt-12 text-center">
-                    <div class="inline-flex space-x-4">
-                        <a href="products.html" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
-                            All Products <i class="fas fa-chevron-right ml-2"></i>
-                        </a>
-                        <a href="services.html" class="inline-flex items-center justify-center px-5 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                            All Services <i class="fas fa-chevron-right ml-2"></i>
-                        </a>
+
+                <!-- Featured Product 2 -->
+                <div class="product-card glass-card p-8 rounded-2xl">
+                    <div class="feature-icon flex items-center justify-center h-14 w-14 rounded-xl bg-green-600 text-white mb-6">
+                        <i class="fas fa-network-wired text-xl"></i>
                     </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Networking</h3>
+                    <div class="aspect-w-16 aspect-h-9 mb-6">
+                        <img class="object-cover rounded-xl shadow-lg" src="https://images.pexels.com/photos/442150/pexels-photo-442150.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Networking equipment">
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        Enterprise-grade routers, switches, and wireless solutions for reliable connectivity.
+                    </p>
+                    <a href="products.html" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors">
+                        View Products
+                        <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+
+                <!-- Featured Service -->
+                <div class="product-card glass-card p-8 rounded-2xl">
+                    <div class="feature-icon flex items-center justify-center h-14 w-14 rounded-xl bg-purple-600 text-white mb-6">
+                        <i class="fas fa-shield-alt text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Cybersecurity</h3>
+                    <div class="aspect-w-16 aspect-h-9 mb-6">
+                        <img class="object-cover rounded-xl shadow-lg" src="https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Cybersecurity services">
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        Comprehensive security assessments and protection solutions to safeguard your digital assets.
+                    </p>
+                    <a href="services.html" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors">
+                        View Services
+                        <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <div class="inline-flex space-x-4">
+                    <a href="products.html" class="btn-primary">
+                        All Products
+                        <i class="fas fa-chevron-right ml-2"></i>
+                    </a>
+                    <a href="services.html" class="inline-flex items-center justify-center px-8 py-3 border-2 border-gray-300 text-base font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 hover:border-gray-400 transition-all duration-300">
+                        All Services
+                        <i class="fas fa-chevron-right ml-2"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Testimonials -->
-    <section class="py-16 bg-gray-50 scroll-reveal">
+    <section class="py-20 bg-gray-50 scroll-reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:text-center">
+            <div class="lg:text-center mb-16">
                 <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Testimonials</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl section-heading">
                     Trusted by industry leaders
                 </p>
             </div>
 
-            <div class="mt-10">
-                <div class="space-y-10 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10 md:space-y-0">
-                    <!-- Testimonial 1 -->
-                    <div class="glass-card p-6 rounded-lg">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <div class="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
-                                    <i class="fas fa-user text-xl"></i>
-                                </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card glass-card p-8 rounded-2xl">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <div class="h-14 w-14 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600">
+                                <i class="fas fa-user text-xl"></i>
                             </div>
-                            <div class="ml-4">
-                                <div class="text-lg font-medium text-gray-900">Sarah Johnson</div>
-                                <div class="text-sm text-gray-500">CTO, TechCorp</div>
-                                <div class="mt-2 text-gray-600">
-                                    <p>"Silicon's enterprise servers have transformed our data center operations. The performance and reliability are unmatched in the industry."</p>
-                                </div>
-                                <div class="mt-3 flex">
-                                    <i class="fas fa-star text-yellow-400"></i>
-                                    <i class="fas fa-star text-yellow-400"></i>
-                                    <i class="fas fa-star text-yellow-400"></i>
-                                    <i class="fas fa-star text-yellow-400"></i>
-                                    <i class="fas fa-star text-yellow-400"></i>
-                                </div>
+                        </div>
+                        <div class="ml-6">
+                            <div class="text-lg font-semibold text-gray-900">Sarah Johnson</div>
+                            <div class="text-sm text-gray-500">CTO, TechCorp</div>
+                            <div class="mt-4 text-gray-600">
+                                <p class="italic">"Silicon's enterprise servers have transformed our data center operations. The performance and reliability are unmatched in the industry."</p>
+                            </div>
+                            <div class="mt-4 flex">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Testimonial 2 -->
-                    <div class="glass-card p-6 rounded-lg">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <div class="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center text-green-600">
-                                    <i class="fas fa-user text-xl"></i>
-                                </div>
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card glass-card p-8 rounded-2xl">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <div class="h-14 w-14 rounded-xl bg-green-100 flex items-center justify-center text-green-600">
+                                <i class="fas fa-user text-xl"></i>
                             </div>
-                            <div class="ml-4">
-                                <div class="text-lg font-medium text-gray-900">Michael Chen</div>
-                                <div class="text-sm text-gray-500">Director of IT, GlobalNet</div>
-                                <div class="mt-2 text-gray-600">
-                                    <p>"The cybersecurity solutions implemented by Silicon have significantly reduced our vulnerability to threats while improving compliance."</p>
-                                </div>
-                                <div class="mt-3 flex">
-                                    <i class="fas fa-star text-yellow-400"></i>
-                                    <i class="fas fa-star text-yellow-400"></i>
-                                    <i class="fas fa-star text-yellow-400"></i>
-                                    <i class="fas fa-star text-yellow-400"></i>
-                                    <i class="fas fa-star-half-alt text-yellow-400"></i>
-                                </div>
+                        </div>
+                        <div class="ml-6">
+                            <div class="text-lg font-semibold text-gray-900">Michael Chen</div>
+                            <div class="text-sm text-gray-500">Director of IT, GlobalNet</div>
+                            <div class="mt-4 text-gray-600">
+                                <p class="italic">"The cybersecurity solutions implemented by Silicon have significantly reduced our vulnerability to threats while improving compliance."</p>
+                            </div>
+                            <div class="mt-4 flex">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star-half-alt text-yellow-400"></i>
                             </div>
                         </div>
                     </div>
@@ -433,26 +511,24 @@
     </section>
 
     <!-- Call to Action -->
-    <section class="py-16 bg-blue-600 scroll-reveal">
+    <section class="py-20 bg-gradient-to-br from-blue-600 to-blue-700 scroll-reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
                     Ready to transform your business?
                 </h2>
-                <p class="mt-4 text-lg leading-6 text-blue-100">
+                <p class="mt-4 text-xl text-blue-100">
                     Contact us today to discuss how our solutions can help you achieve your technology goals.
                 </p>
-                <div class="mt-8 flex justify-center">
-                    <div class="inline-flex rounded-md shadow">
-                        <a href="contact.html" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50">
-                            Contact Us
-                        </a>
-                    </div>
-                    <div class="ml-3 inline-flex">
-                        <a href="about.html" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-700 hover:bg-blue-800">
-                            Learn More
-                        </a>
-                    </div>
+                <div class="mt-10 flex justify-center gap-4">
+                    <a href="contact.html" class="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-lg text-blue-600 bg-white hover:bg-blue-50 transition-all duration-300 shadow-xl shadow-blue-500/20">
+                        Contact Us
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="about.html" class="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-lg text-white border-2 border-white hover:bg-white hover:text-blue-600 transition-all duration-300">
+                        Learn More
+                        <i class="fas fa-info-circle ml-2"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -461,41 +537,41 @@
     <!-- Footer -->
     <footer class="bg-gray-900 text-white">
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
                 <div class="col-span-1 md:col-span-1">
                     <div class="flex items-center">
-                        <div class="h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">S</div>
+                        <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-500 flex items-center justify-center text-white font-bold shadow-lg shadow-blue-500/20">S</div>
                         <span class="ml-2 text-xl font-semibold">Silicon</span>
                     </div>
-                    <p class="mt-4 text-sm text-gray-400">
+                    <p class="mt-4 text-gray-400">
                         Silicon Computer and Communications PLC provides cutting-edge technology solutions to businesses across various sectors.
                     </p>
                 </div>
                 <div>
-                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Products</h3>
-                    <ul class="mt-4 space-y-2">
-                        <li><a href="products.html#banking" class="text-sm text-gray-400 hover:text-white">Banking Equipment</a></li>
-                        <li><a href="products.html#networking" class="text-sm text-gray-400 hover:text-white">Networking</a></li>
-                        <li><a href="products.html#servers" class="text-sm text-gray-400 hover:text-white">Server Solutions</a></li>
-                        <li><a href="products.html#security" class="text-sm text-gray-400 hover:text-white">Security Systems</a></li>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase mb-4">Products</h3>
+                    <ul class="space-y-3">
+                        <li><a href="products.html#banking" class="text-gray-400 hover:text-white transition-colors">Banking Equipment</a></li>
+                        <li><a href="products.html#networking" class="text-gray-400 hover:text-white transition-colors">Networking</a></li>
+                        <li><a href="products.html#servers" class="text-gray-400 hover:text-white transition-colors">Server Solutions</a></li>
+                        <li><a href="products.html#security" class="text-gray-400 hover:text-white transition-colors">Security Systems</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Services</h3>
-                    <ul class="mt-4 space-y-2">
-                        <li><a href="services.html#cloud" class="text-sm text-gray-400 hover:text-white">Cloud Solutions</a></li>
-                        <li><a href="services.html#security" class="text-sm text-gray-400 hover:text-white">Cybersecurity</a></li>
-                        <li><a href="services.html#software" class="text-sm text-gray-400 hover:text-white">Software Development</a></li>
-                        <li><a href="services.html#consulting" class="text-sm text-gray-400 hover:text-white">IT Consulting</a></li>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase mb-4">Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="services.html#cloud" class="text-gray-400 hover:text-white transition-colors">Cloud Solutions</a></li>
+                        <li><a href="services.html#security" class="text-gray-400 hover:text-white transition-colors">Cybersecurity</a></li>
+                        <li><a href="services.html#software" class="text-gray-400 hover:text-white transition-colors">Software Development</a></li>
+                        <li><a href="services.html#consulting" class="text-gray-400 hover:text-white transition-colors">IT Consulting</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Company</h3 >
-                    <ul class="mt-4 space-y-2">
-                        <li><a href="about.html" class="text-sm text-gray-400 hover:text-white">About Us</a></li>
-                        <li><a href="about.html#team" class="text-sm text-gray-400 hover:text-white">Leadership</a></li>
-                        <li><a href="contact.html" class="text-sm text-gray-400 hover:text-white">Contact</a></li>
-                        <li><a href="contact.html#location" class="text-sm text-gray-400 hover:text-white">Location</a></li>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase mb-4">Company</h3>
+                    <ul class="space-y-3">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="about.html#team" class="text-gray-400 hover:text-white transition-colors">Leadership</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="contact.html#location" class="text-gray-400 hover:text-white transition-colors">Location</a></li>
                     </ul>
                 </div>
             </div>
@@ -526,7 +602,8 @@
                     }
                 });
             }, {
-                threshold: 0.1
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
             });
             
             scrollRevealElements.forEach(element => {
