@@ -12,71 +12,59 @@
     <title>Products | Silicon Computer and Communications PLC</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
         :root {
-            --primary: #3b82f6;
-            --primary-dark: #2563eb;
-            --secondary: #10b981;
-            --dark: #1e293b;
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --secondary: #06b6d4;
+            --dark: #0f172a;
             --light: #f8fafc;
+            --accent: #7c3aed;
         }
         
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f1f5f9;
+            background-color: var(--light);
             color: var(--dark);
             scroll-behavior: smooth;
         }
         
         .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px 0 rgba(31, 38, 135, 0.15);
         }
         
         .page-header {
-            background: linear-gradient(rgba(30, 41, 59, 0.9), rgba(30, 41, 59, 0.8)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.9)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-        }
-        
-        .fade-in {
-            animation: fadeIn 1s ease-in-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease-out;
-        }
-        
-        .scroll-reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .product-card {
-            transition: all 0.3s ease;
+            background-attachment: fixed;
         }
         
         .nav-link {
             position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--primary);
         }
         
         .nav-link::after {
@@ -84,53 +72,166 @@
             position: absolute;
             width: 0;
             height: 2px;
-            bottom: -2px;
-            left: 0;
+            bottom: 0;
+            left: 50%;
             background-color: var(--primary);
-            transition: width 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
         }
         
         .nav-link:hover::after {
-            width: 100%;
+            width: 80%;
+        }
+        
+        .active-nav {
+            color: var(--primary);
+            background-color: rgba(2, 132, 199, 0.1);
         }
         
         .active-nav::after {
-            width: 100%;
+            width: 80%;
+        }
+        
+        .product-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 24px;
+            overflow: hidden;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-card img {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
         }
         
         /* Accordion styles */
         .accordion-header {
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 1.5rem;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+        
+        .accordion-header:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
         }
         
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease-out;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+        }
+        
+        .accordion-content.active {
+            max-height: 2000px;
+            opacity: 1;
+            padding: 1rem 0;
+        }
+        
+        .category-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .accordion-header:hover .category-icon {
+            transform: scale(1.1) rotate(-5deg);
+        }
+        
+        /* Modern Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+        
+        /* Mobile Menu Animation */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .mobile-menu-active {
+            animation: slideDown 0.3s ease forwards;
         }
     </style>
 </head>
 <body class="min-h-screen">
     <!-- Navigation -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
+    <nav class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
-                    <a href="index.html" class="flex-shrink-0 flex items-center">
-                        <div class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">S</div>
-                        <span class="ml-2 text-xl font-semibold text-gray-900">Silicon</span>
+                    <a href="index.html" class="flex-shrink-0 flex items-center space-x-3">
+                        <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 flex items-center justify-center text-white font-bold shadow-lg shadow-blue-500/20">
+                            <span class="text-xl">S</span>
+                        </div>
+                        <span class="ml-2 text-xl font-semibold gradient-text">Silicon</span>
                     </a>
                 </div>
                 <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
-                    <a href="index.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">Home</a>
-                    <a href="products.html" class="nav-link text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium active-nav">Products</a>
-                    <a href="services.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">Services</a>
-                    <a href="about.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">About</a>
-                    <a href="contact.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">Contact</a>
+                    <a href="index.html" class="nav-link text-gray-600 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </a>
+                    <a href="products.html" class="nav-link text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium active-nav">
+                        <i class="fas fa-box mr-2"></i>Products
+                    </a>
+                    <a href="services.html" class="nav-link text-gray-600 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+                        <i class="fas fa-cogs mr-2"></i>Services
+                    </a>
+                    <a href="about.html" class="nav-link text-gray-600 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+                        <i class="fas fa-info-circle mr-2"></i>About
+                    </a>
+                    <a href="contact.html" class="nav-link text-gray-600 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+                        <i class="fas fa-envelope mr-2"></i>Contact
+                    </a>
                 </div>
                 <div class="-mr-2 flex items-center md:hidden">
-                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-lg text-gray-500 hover:text-gray-600 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-colors">
                         <span class="sr-only">Open main menu</span>
                         <i class="fas fa-bars"></i>
                     </button>
@@ -140,18 +241,28 @@
         
         <!-- Mobile menu -->
         <div class="hidden md:hidden" id="mobile-menu">
-            <div class="pt-2 pb-3 space-y-1">
-                <a href="index.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
-                <a href="products.html" class="bg-blue-50 border-blue-500 text-blue-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Products</a>
-                <a href="services.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Services</a>
-                <a href="about.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">About</a>
-                <a href="contact.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Contact</a>
+            <div class="pt-2 pb-3 space-y-1 bg-white shadow-lg rounded-b-2xl">
+                <a href="index.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors flex items-center">
+                    <i class="fas fa-home mr-2"></i>Home
+                </a>
+                <a href="products.html" class="bg-blue-50 border-blue-500 text-blue-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors flex items-center">
+                    <i class="fas fa-box mr-2"></i>Products
+                </a>
+                <a href="services.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors flex items-center">
+                    <i class="fas fa-cogs mr-2"></i>Services
+                </a>
+                <a href="about.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors flex items-center">
+                    <i class="fas fa-info-circle mr-2"></i>About
+                </a>
+                <a href="contact.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors flex items-center">
+                    <i class="fas fa-envelope mr-2"></i>Contact
+                </a>
             </div>
         </div>
     </nav>
 
     <!-- Page Header -->
-    <section class="page-header text-white fade-in">
+    <section class="page-header text-white" data-aos="fade-down" data-aos-duration="1000">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
             <div class="text-center">
                 <h1 class="text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl">
@@ -160,16 +271,26 @@
                 <p class="mt-3 max-w-2xl mx-auto text-base text-gray-300 sm:mt-5 sm:text-lg md:mt-5 md:text-xl">
                     Comprehensive technology solutions for every business need.
                 </p>
+                <div class="mt-8 flex justify-center gap-4">
+                    <a href="#products" class="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-xl text-blue-600 bg-white hover:bg-blue-50 transition-all duration-300 shadow-xl shadow-blue-500/20 group">
+                        Explore Products
+                        <i class="fas fa-arrow-down ml-2 transition-transform group-hover:translate-y-1"></i>
+                    </a>
+                    <a href="contact.html" class="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-xl text-white border-2 border-white hover:bg-white hover:text-blue-600 transition-all duration-300 group">
+                        Request Quote
+                        <i class="fas fa-envelope ml-2 transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Products Section - Expanded Catalog -->
-    <section id="products" class="py-16 bg-white scroll-reveal">
+    <section id="products" class="py-16 bg-white" data-aos="fade-up" data-aos-duration="1000">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:text-center">
+            <div class="lg:text-center mb-16">
                 <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Products</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl gradient-text">
                     Comprehensive Technology Solutions
                 </p>
                 <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
@@ -177,79 +298,116 @@
                 </p>
             </div>
 
-            <div class="mt-16">
+            <div class="mt-16 space-y-8">
                 <!-- Banking & Office Equipment -->
-                <div class="mb-16" id="banking">
-                    <div class="accordion-header flex justify-between items-center cursor-pointer" onclick="toggleAccordion('banking')">
-                        <h3 class="text-xl font-semibold text-gray-900">Banking & Office Equipment</h3>
+                <div class="mb-16" id="banking" data-aos="fade-up" data-aos-delay="100">
+                    <div class="accordion-header flex items-center" onclick="toggleAccordion('banking')">
+                        <div class="category-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-xl font-semibold text-gray-900">Banking & Office Equipment</h3>
+                            <p class="text-gray-500 text-sm mt-1">Complete solutions for financial institutions</p>
+                        </div>
                         <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300" id="banking-chevron"></i>
                     </div>
                     <div class="accordion-content mt-4" id="banking-content">
                         <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                             <!-- Product 1 -->
-                            <div class="pt-6 product-card">
-                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
-                                    <div class="-mt-6">
-                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
-                                            <i class="fas fa-print text-xl"></i>
+                            <div class="product-card glass-card overflow-hidden">
+                                <div class="relative">
+                                    <div class="aspect-w-16 aspect-h-9">
+                                        <img class="object-cover w-full h-full" src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Passbook printers">
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <div class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                            Featured
                                         </div>
-                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Passbook Printers</h3>
-                                        <div class="mt-4 aspect-w-3 aspect-h-2">
-                                            <img class="object-cover shadow-lg rounded-lg" src="https://www.epson.com.sg/img/products/printers/PLQ-22CS_1.jpg" alt="Passbook printers">
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center text-white">
+                                            <i class="fas fa-print text-lg"></i>
                                         </div>
-                                        <p class="mt-4 text-base text-gray-500">
-                                            High-speed, reliable passbook printers from Epson PLQ series, Olivetti, and Tally Dascom for banking applications.
-                                        </p>
-                                        <div class="mt-6">
-                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
-                                                Request Quote <span aria-hidden="true">→</span>
-                                            </a>
+                                        <h3 class="ml-3 text-lg font-semibold text-gray-900">Passbook Printers</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-6">
+                                        High-speed, reliable passbook printers from Epson PLQ series, Olivetti, and Tally Dascom for banking applications.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <a href="contact.html" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors group">
+                                            Request Quote
+                                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-2"></i>
+                                        </a>
+                                        <div class="flex items-center text-gray-500">
+                                            <i class="fas fa-shield-alt mr-1"></i>
+                                            <span class="text-sm">Warranty Available</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Product 2 -->
-                            <div class="pt-6 product-card">
-                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
-                                    <div class="-mt-6">
-                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
-                                            <i class="fas fa-cash-register text-xl"></i>
+                            <div class="product-card glass-card overflow-hidden">
+                                <div class="relative">
+                                    <div class="aspect-w-16 aspect-h-9">
+                                        <img class="object-cover w-full h-full" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="POS terminals">
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <div class="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                            New
                                         </div>
-                                        <h3 class="mt-4 text-lg font-medium text-gray-900">POS Terminals</h3>
-                                        <div class="mt-4 aspect-w-3 aspect-h-2">
-                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/71iFj3fKnAL._AC_SL1500_.jpg" alt="POS terminals">
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-green-600 to-green-400 flex items-center justify-center text-white">
+                                            <i class="fas fa-cash-register text-lg"></i>
                                         </div>
-                                        <p class="mt-4 text-base text-gray-500">
-                                            Secure, EMV-compliant point-of-sale terminals with contactless payment support for retail and hospitality.
-                                        </p>
-                                        <div class="mt-6">
-                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
-                                                Request Quote <span aria-hidden="true">→</span>
-                                            </a>
+                                        <h3 class="ml-3 text-lg font-semibold text-gray-900">POS Terminals</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-6">
+                                        Secure, EMV-compliant point-of-sale terminals with contactless payment support for retail and hospitality.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <a href="contact.html" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors group">
+                                            Request Quote
+                                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-2"></i>
+                                        </a>
+                                        <div class="flex items-center text-gray-500">
+                                            <i class="fas fa-shield-alt mr-1"></i>
+                                            <span class="text-sm">Warranty Available</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Product 3 -->
-                            <div class="pt-6 product-card">
-                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
-                                    <div class="-mt-6">
-                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white">
-                                            <i class="fas fa-barcode text-xl"></i>
+                            <div class="product-card glass-card overflow-hidden">
+                                <div class="relative">
+                                    <div class="aspect-w-16 aspect-h-9">
+                                        <img class="object-cover w-full h-full" src="https://images.unsplash.com/photo-1617791160536-598cf32026fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Barcode scanners">
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-purple-600 to-purple-400 flex items-center justify-center text-white">
+                                            <i class="fas fa-barcode text-lg"></i>
                                         </div>
-                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Barcode Scanners</h3>
-                                        <div class="mt-4 aspect-w-3 aspect-h-2">
-                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/61diCK0ua1L._SL1500_.jpg" alt="Barcode scanners">
-                                        </div>
-                                        <p class="mt-4 text-base text-gray-500">
-                                            High-performance 1D/2D barcode scanners for retail, warehouse, and industrial applications.
-                                        </p>
-                                        <div class="mt-6">
-                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
-                                                Request Quote <span aria-hidden="true">→</span>
-                                            </a>
+                                        <h3 class="ml-3 text-lg font-semibold text-gray-900">Barcode Scanners</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-6">
+                                        High-performance 1D/2D barcode scanners for retail, warehouse, and industrial applications.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <a href="contact.html" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors group">
+                                            Request Quote
+                                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-2"></i>
+                                        </a>
+                                        <div class="flex items-center text-gray-500">
+                                            <i class="fas fa-shield-alt mr-1"></i>
+                                            <span class="text-sm">Warranty Available</span>
                                         </div>
                                     </div>
                                 </div>
@@ -259,77 +417,114 @@
                 </div>
 
                 <!-- Networking & Communication -->
-                <div class="mb-16" id="networking">
-                    <div class="accordion-header flex justify-between items-center cursor-pointer" onclick="toggleAccordion('networking')">
-                        <h3 class="text-xl font-semibold text-gray-900">Networking & Communication</h3>
+                <div class="mb-16" id="networking" data-aos="fade-up" data-aos-delay="200">
+                    <div class="accordion-header flex items-center" onclick="toggleAccordion('networking')">
+                        <div class="category-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-xl font-semibold text-gray-900">Networking & Communication</h3>
+                            <p class="text-gray-500 text-sm mt-1">Advanced networking solutions for businesses</p>
+                        </div>
                         <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300" id="networking-chevron"></i>
                     </div>
                     <div class="accordion-content mt-4" id="networking-content">
                         <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                             <!-- Product 1 -->
-                            <div class="pt-6 product-card">
-                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
-                                    <div class="-mt-6">
-                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
-                                            <i class="fas fa-network-wired text-xl"></i>
+                            <div class="product-card glass-card overflow-hidden">
+                                <div class="relative">
+                                    <div class="aspect-w-16 aspect-h-9">
+                                        <img class="object-cover w-full h-full" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1534&q=80" alt="Enterprise routers">
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <div class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                            Featured
                                         </div>
-                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Enterprise Routers</h3>
-                                        <div class="mt-4 aspect-w-3 aspect-h-2">
-                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/71ej-wO3KbL._AC_SL1500_.jpg" alt="Enterprise routers">
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center text-white">
+                                            <i class="fas fa-network-wired text-lg"></i>
                                         </div>
-                                        <p class="mt-4 text-base text-gray-500">
-                                            High-performance routers from Cisco, MikroTik, and Ubiquiti for enterprise networks with advanced security features.
-                                        </p>
-                                        <div class="mt-6">
-                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
-                                                Request Quote <span aria-hidden="true">→</span>
-                                            </a>
+                                        <h3 class="ml-3 text-lg font-semibold text-gray-900">Enterprise Routers</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-6">
+                                        High-performance routers from Cisco, MikroTik, and Ubiquiti for enterprise networks with advanced security features.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <a href="contact.html" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors group">
+                                            Request Quote
+                                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-2"></i>
+                                        </a>
+                                        <div class="flex items-center text-gray-500">
+                                            <i class="fas fa-shield-alt mr-1"></i>
+                                            <span class="text-sm">Warranty Available</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Product 2 -->
-                            <div class="pt-6 product-card">
-                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
-                                    <div class="-mt-6">
-                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
-                                            <i class="fas fa-ethernet text-xl"></i>
+                            <div class="product-card glass-card overflow-hidden">
+                                <div class="relative">
+                                    <div class="aspect-w-16 aspect-h-9">
+                                        <img class="object-cover w-full h-full" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1534&q=80" alt="Network switches">
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <div class="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                            New
                                         </div>
-                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Network Switches</h3>
-                                        <div class="mt-4 aspect-w-3 aspect-h-2">
-                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/71Ck4-gswaL._AC_SL1500_.jpg" alt="Network switches">
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-green-600 to-green-400 flex items-center justify-center text-white">
+                                            <i class="fas fa-ethernet text-lg"></i>
                                         </div>
-                                        <p class="mt-4 text-base text-gray-500">
-                                            Managed and unmanaged switches from 8 to 48 ports with PoE+ support for flexible network deployments.
-                                        </p>
-                                        <div class="mt-6">
-                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
-                                                Request Quote <span aria-hidden="true">→</span>
-                                            </a>
+                                        <h3 class="ml-3 text-lg font-semibold text-gray-900">Network Switches</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-6">
+                                        Managed and unmanaged switches from 8 to 48 ports with PoE+ support for flexible network deployments.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <a href="contact.html" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors group">
+                                            Request Quote
+                                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-2"></i>
+                                        </a>
+                                        <div class="flex items-center text-gray-500">
+                                            <i class="fas fa-shield-alt mr-1"></i>
+                                            <span class="text-sm">Warranty Available</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Product 3 -->
-                            <div class="pt-6 product-card">
-                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
-                                    <div class="-mt-6">
-                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white">
-                                            <i class="fas fa-wifi text-xl"></i>
+                            <div class="product-card glass-card overflow-hidden">
+                                <div class="relative">
+                                    <div class="aspect-w-16 aspect-h-9">
+                                        <img class="object-cover w-full h-full" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1534&q=80" alt="Wireless access points">
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-purple-600 to-purple-400 flex items-center justify-center text-white">
+                                            <i class="fas fa-wifi text-lg"></i>
                                         </div>
-                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Wireless Access Points</h3>
-                                        <div class="mt-4 aspect-w-3 aspect-h-2">
-                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/61zjj2sgXML._AC_SL1500_.jpg" alt="Wireless access points">
-                                        </div>
-                                        <p class="mt-4 text-base text-gray-500">
-                                            Enterprise-grade Wi-Fi 6 access points with centralized management for high-density environments.
-                                        </p>
-                                        <div class="mt-6">
-                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
-                                                Request Quote <span aria-hidden="true">→</span>
-                                            </a>
+                                        <h3 class="ml-3 text-lg font-semibold text-gray-900">Wireless Access Points</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-6">
+                                        Enterprise-grade Wi-Fi 6 access points with centralized management for high-density environments.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <a href="contact.html" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors group">
+                                            Request Quote
+                                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-2"></i>
+                                        </a>
+                                        <div class="flex items-center text-gray-500">
+                                            <i class="fas fa-shield-alt mr-1"></i>
+                                            <span class="text-sm">Warranty Available</span>
                                         </div>
                                     </div>
                                 </div>
@@ -339,77 +534,114 @@
                 </div>
 
                 <!-- Server & Data Center Solutions -->
-                <div class="mb-16" id="servers">
-                    <div class="accordion-header flex justify-between items-center cursor-pointer" onclick="toggleAccordion('servers')">
-                        <h3 class="text-xl font-semibold text-gray-900">Server & Data Center Solutions</h3>
+                <div class="mb-16" id="servers" data-aos="fade-up" data-aos-delay="300">
+                    <div class="accordion-header flex items-center" onclick="toggleAccordion('servers')">
+                        <div class="category-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-xl font-semibold text-gray-900">Server & Data Center Solutions</h3>
+                            <p class="text-gray-500 text-sm mt-1">High-performance computing solutions</p>
+                        </div>
                         <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300" id="servers-chevron"></i>
                     </div>
                     <div class="accordion-content mt-4" id="servers-content">
                         <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                             <!-- Product 1 -->
-                            <div class="pt-6 product-card">
-                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
-                                    <div class="-mt-6">
-                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
-                                            <i class="fas fa-server text-xl"></i>
+                            <div class="product-card glass-card overflow-hidden">
+                                <div class="relative">
+                                    <div class="aspect-w-16 aspect-h-9">
+                                        <img class="object-cover w-full h-full" src="https://images.unsplash.com/photo-1580894742597-87bc8789db3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Rack servers">
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <div class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                            Featured
                                         </div>
-                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Rack Servers</h3>
-                                        <div class="mt-4 aspect-w-3 aspect-h-2">
-                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/81oUaU3rKzL._AC_SL1500_.jpg" alt="Rack servers">
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center text-white">
+                                            <i class="fas fa-server text-lg"></i>
                                         </div>
-                                        <p class="mt-4 text-base text-gray-500">
-                                            Dell PowerEdge, HPE ProLiant, and Lenovo ThinkSystem rack servers for enterprise workloads and virtualization.
-                                        </p>
-                                        <div class="mt-6">
-                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
-                                                Request Quote <span aria-hidden="true">→</span>
-                                            </a>
+                                        <h3 class="ml-3 text-lg font-semibold text-gray-900">Rack Servers</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-6">
+                                        Dell PowerEdge, HPE ProLiant, and Lenovo ThinkSystem rack servers for enterprise workloads and virtualization.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <a href="contact.html" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors group">
+                                            Request Quote
+                                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-2"></i>
+                                        </a>
+                                        <div class="flex items-center text-gray-500">
+                                            <i class="fas fa-shield-alt mr-1"></i>
+                                            <span class="text-sm">Warranty Available</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Product 2 -->
-                            <div class="pt-6 product-card">
-                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
-                                    <div class="-mt-6">
-                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
-                                            <i class="fas fa-database text-xl"></i>
+                            <div class="product-card glass-card overflow-hidden">
+                                <div class="relative">
+                                    <div class="aspect-w-16 aspect-h-9">
+                                        <img class="object-cover w-full h-full" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1534&q=80" alt="NAS/SAN storage">
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <div class="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                            New
                                         </div>
-                                        <h3 class="mt-4 text-lg font-medium text-gray-900">NAS/SAN Storage</h3>
-                                        <div class="mt-4 aspect-w-3 aspect-h-2">
-                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/71pYXaEzDhL._AC_SL1500_.jpg" alt="NAS/SAN storage">
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-green-600 to-green-400 flex items-center justify-center text-white">
+                                            <i class="fas fa-database text-lg"></i>
                                         </div>
-                                        <p class="mt-4 text-base text-gray-500">
-                                            High-capacity network-attached and storage area network solutions from Synology and QNAP.
-                                        </p>
-                                        <div class="mt-6">
-                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
-                                                Request Quote <span aria-hidden="true">→</span>
-                                            </a>
+                                        <h3 class="ml-3 text-lg font-semibold text-gray-900">NAS/SAN Storage</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-6">
+                                        High-capacity network-attached and storage area network solutions from Synology and QNAP.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <a href="contact.html" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors group">
+                                            Request Quote
+                                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-2"></i>
+                                        </a>
+                                        <div class="flex items-center text-gray-500">
+                                            <i class="fas fa-shield-alt mr-1"></i>
+                                            <span class="text-sm">Warranty Available</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Product 3 -->
-                            <div class="pt-6 product-card">
-                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
-                                    <div class="-mt-6">
-                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white">
-                                            <i class="fas fa-fan text-xl"></i>
+                            <div class="product-card glass-card overflow-hidden">
+                                <div class="relative">
+                                    <div class="aspect-w-16 aspect-h-9">
+                                        <img class="object-cover w-full h-full" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1534&q=80" alt="Server cabinets">
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-purple-600 to-purple-400 flex items-center justify-center text-white">
+                                            <i class="fas fa-fan text-lg"></i>
                                         </div>
-                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Server Cabinets</h3>
-                                        <div class="mt-4 aspect-w-3 aspect-h-2">
-                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/51WSa7dqDUL._AC_SL1000_.jpg" alt="Server cabinets">
-                                        </div>
-                                        <p class="mt-4 text-base text-gray-500">
-                                            Secure, ventilated server racks and cabinets with cable management and cooling accessories.
-                                        </p>
-                                        <div class="mt-6">
-                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
-                                                Request Quote <span aria-hidden="true">→</span>
-                                            </a>
+                                        <h3 class="ml-3 text-lg font-semibold text-gray-900">Server Cabinets</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-6">
+                                        Secure, ventilated server racks and cabinets with cable management and cooling accessories.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <a href="contact.html" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors group">
+                                            Request Quote
+                                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-2"></i>
+                                        </a>
+                                        <div class="flex items-center text-gray-500">
+                                            <i class="fas fa-shield-alt mr-1"></i>
+                                            <span class="text-sm">Warranty Available</span>
                                         </div>
                                     </div>
                                 </div>
@@ -419,54 +651,84 @@
                 </div>
 
                 <!-- Power & Infrastructure -->
-                <div class="mb-16" id="power">
-                    <div class="accordion-header flex justify-between items-center cursor-pointer" onclick="toggleAccordion('power')">
-                        <h3 class="text-xl font-semibold text-gray-900">Power & Infrastructure</h3>
+                <div class="mb-16" id="power" data-aos="fade-up" data-aos-delay="400">
+                    <div class="accordion-header flex items-center" onclick="toggleAccordion('power')">
+                        <div class="category-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-xl font-semibold text-gray-900">Power & Infrastructure</h3>
+                            <p class="text-gray-500 text-sm mt-1">Reliable power solutions for critical infrastructure</p>
+                        </div>
                         <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300" id="power-chevron"></i>
                     </div>
                     <div class="accordion-content mt-4" id="power-content">
                         <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                             <!-- Product 1 -->
-                            <div class="pt-6 product-card">
-                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
-                                    <div class="-mt-6">
-                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
-                                            <i class="fas fa-bolt text-xl"></i>
+                            <div class="product-card glass-card overflow-hidden">
+                                <div class="relative">
+                                    <div class="aspect-w-16 aspect-h-9">
+                                        <img class="object-cover w-full h-full" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1534&q=80" alt="UPS systems">
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <div class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                            Featured
                                         </div>
-                                        <h3 class="mt-4 text-lg font-medium text-gray-900">UPS Systems</h3>
-                                        <div class="mt-4 aspect-w-3 aspect-h-2">
-                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/71faruxhTkL._AC_SL1500_.jpg" alt="UPS systems">
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center text-white">
+                                            <i class="fas fa-bolt text-lg"></i>
                                         </div>
-                                        <p class="mt-4 text-base text-gray-500">
-                                            Uninterruptible power supply systems from APC, Eaton, and CyberPower for critical infrastructure protection.
-                                        </p>
-                                        <div class="mt-6">
-                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
-                                                Request Quote <span aria-hidden="true">→</span>
-                                            </a>
+                                        <h3 class="ml-3 text-lg font-semibold text-gray-900">UPS Systems</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-6">
+                                        Uninterruptible power supply systems from APC, Eaton, and CyberPower for critical infrastructure protection.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <a href="contact.html" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors group">
+                                            Request Quote
+                                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-2"></i>
+                                        </a>
+                                        <div class="flex items-center text-gray-500">
+                                            <i class="fas fa-shield-alt mr-1"></i>
+                                            <span class="text-sm">Warranty Available</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Product 2 -->
-                            <div class="pt-6 product-card">
-                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
-                                    <div class="-mt-6">
-                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
-                                            <i class="fas fa-plug text-xl"></i>
+                            <div class="product-card glass-card overflow-hidden">
+                                <div class="relative">
+                                    <div class="aspect-w-16 aspect-h-9">
+                                        <img class="object-cover w-full h-full" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1534&q=80" alt="Power distribution">
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <div class="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                            New
                                         </div>
-                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Power Distribution</h3>
-                                        <div class="mt-4 aspect-w-3 aspect-h-2">
-                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/61AvTTM-jrL._AC_SL1500_.jpg" alt="Power distribution">
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-green-600 to-green-400 flex items-center justify-center text-white">
+                                            <i class="fas fa-plug text-lg"></i>
                                         </div>
-                                        <p class="mt-4 text-base text-gray-500">
-                                            Voltage stabilizers and intelligent PDUs with remote monitoring for data center power management.
-                                        </p>
-                                        <div class="mt-6">
-                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
-                                                Request Quote <span aria-hidden="true">→</span>
-                                            </a>
+                                        <h3 class="ml-3 text-lg font-semibold text-gray-900">Power Distribution</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-6">
+                                        Voltage stabilizers and intelligent PDUs with remote monitoring for data center power management.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <a href="contact.html" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors group">
+                                            Request Quote
+                                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-2"></i>
+                                        </a>
+                                        <div class="flex items-center text-gray-500">
+                                            <i class="fas fa-shield-alt mr-1"></i>
+                                            <span class="text-sm">Warranty Available</span>
                                         </div>
                                     </div>
                                 </div>
@@ -476,77 +738,114 @@
                 </div>
 
                 <!-- Security & Access -->
-                <div class="mb-16" id="security">
-                    <div class="accordion-header flex justify-between items-center cursor-pointer" onclick="toggleAccordion('security')">
-                        <h3 class="text-xl font-semibold text-gray-900">Security & Access</h3>
+                <div class="mb-16" id="security" data-aos="fade-up" data-aos-delay="500">
+                    <div class="accordion-header flex items-center" onclick="toggleAccordion('security')">
+                        <div class="category-icon">
+                            <i class="fas fa-fingerprint"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-xl font-semibold text-gray-900">Security & Access</h3>
+                            <p class="text-gray-500 text-sm mt-1">Advanced security solutions for businesses</p>
+                        </div>
                         <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300" id="security-chevron"></i>
                     </div>
                     <div class="accordion-content mt-4" id="security-content">
-                        <div class="grid grid-cols-1 gap-8 sm:grid-cols -2 lg:grid-cols-3">
+                        <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                             <!-- Product 1 -->
-                            <div class="pt-6 product-card">
-                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
-                                    <div class="-mt-6">
-                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
-                                            <i class="fas fa-fingerprint text-xl"></i>
+                            <div class="product-card glass-card overflow-hidden">
+                                <div class="relative">
+                                    <div class="aspect-w-16 aspect-h-9">
+                                        <img class="object-cover w-full h-full" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1534&q=80" alt="Biometric devices">
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <div class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                            Featured
                                         </div>
-                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Biometric Devices</h3>
-                                        <div class="mt-4 aspect-w-3 aspect-h-2">
-                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/61uXqkX+ZIL._SL1500_.jpg" alt="Biometric devices">
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center text-white">
+                                            <i class="fas fa-fingerprint text-lg"></i>
                                         </div>
-                                        <p class="mt-4 text-base text-gray-500">
-                                            Fingerprint and facial recognition time & attendance systems for workforce management.
-                                        </p>
-                                        <div class="mt-6">
-                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
-                                                Request Quote <span aria-hidden="true">→</span>
-                                            </a>
+                                        <h3 class="ml-3 text-lg font-semibold text-gray-900">Biometric Devices</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-6">
+                                        Fingerprint and facial recognition time & attendance systems for workforce management.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <a href="contact.html" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors group">
+                                            Request Quote
+                                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-2"></i>
+                                        </a>
+                                        <div class="flex items-center text-gray-500">
+                                            <i class="fas fa-shield-alt mr-1"></i>
+                                            <span class="text-sm">Warranty Available</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Product 2 -->
-                            <div class="pt-6 product-card">
-                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
-                                    <div class="-mt-6">
-                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
-                                            <i class="fas fa-id-card text-xl"></i>
+                            <div class="product-card glass-card overflow-hidden">
+                                <div class="relative">
+                                    <div class="aspect-w-16 aspect-h-9">
+                                        <img class="object-cover w-full h-full" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1534&q=80" alt="Smart card readers">
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <div class="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                            New
                                         </div>
-                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Smart Card Readers</h3>
-                                        <div class="mt-4 aspect-w-3 aspect-h-2">
-                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/51bo80S4NHL._AC_SL1100_.jpg" alt="Smart card readers">
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-green-600 to-green-400 flex items-center justify-center text-white">
+                                            <i class="fas fa-id-card text-lg"></i>
                                         </div>
-                                        <p class="mt-4 text-base text-gray-500">
-                                            Contact and contactless smart card readers for secure access control and identity verification.
-                                        </p>
-                                        <div class="mt-6">
-                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
-                                                Request Quote <span aria-hidden="true">→</span>
-                                            </a>
+                                        <h3 class="ml-3 text-lg font-semibold text-gray-900">Smart Card Readers</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-6">
+                                        Contact and contactless smart card readers for secure access control and identity verification.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <a href="contact.html" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors group">
+                                            Request Quote
+                                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-2"></i>
+                                        </a>
+                                        <div class="flex items-center text-gray-500">
+                                            <i class="fas fa-shield-alt mr-1"></i>
+                                            <span class="text-sm">Warranty Available</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Product 3 -->
-                            <div class="pt-6 product-card">
-                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
-                                    <div class="-mt-6">
-                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white">
-                                            <i class="fas fa-video text-xl"></i>
+                            <div class="product-card glass-card overflow-hidden">
+                                <div class="relative">
+                                    <div class="aspect-w-16 aspect-h-9">
+                                        <img class="object-cover w-full h-full" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1534&q=80" alt="CCTV systems">
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-purple-600 to-purple-400 flex items-center justify-center text-white">
+                                            <i class="fas fa-video text-lg"></i>
                                         </div>
-                                        <h3 class="mt-4 text-lg font-medium text-gray-900">CCTV Systems</h3>
-                                        <div class="mt-4 aspect-w-3 aspect-h-2">
-                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.media-amazon.com/images/I/615MLAPyFOL._AC_SL1500_.jpg" alt="CCTV systems">
-                                        </div>
-                                        <p class="mt-4 text-base text-gray-500">
-                                            IP and analog surveillance kits with 4K cameras, NVRs, and monitoring software for comprehensive security.
-                                        </p>
-                                        <div class="mt-6">
-                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
-                                                Request Quote <span aria-hidden="true">→</span>
-                                            </a>
+                                        <h3 class="ml-3 text-lg font-semibold text-gray-900">CCTV Systems</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-6">
+                                        IP and analog surveillance kits with 4K cameras, NVRs, and monitoring software for comprehensive security.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <a href="contact.html" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors group">
+                                            Request Quote
+                                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-2"></i>
+                                        </a>
+                                        <div class="flex items-center text-gray-500">
+                                            <i class="fas fa-shield-alt mr-1"></i>
+                                            <span class="text-sm">Warranty Available</span>
                                         </div>
                                     </div>
                                 </div>
@@ -556,77 +855,114 @@
                 </div>
 
                 <!-- Software & Embedded Solutions -->
-                <div id="software">
-                    <div class="accordion-header flex justify-between items-center cursor-pointer" onclick="toggleAccordion('software')">
-                        <h3 class="text-xl font-semibold text-gray-900">Software & Embedded Solutions</h3>
+                <div id="software" data-aos="fade-up" data-aos-delay="600">
+                    <div class="accordion-header flex items-center" onclick="toggleAccordion('software')">
+                        <div class="category-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-xl font-semibold text-gray-900">Software & Embedded Solutions</h3>
+                            <p class="text-gray-500 text-sm mt-1">Customized software solutions for businesses</p>
+                        </div>
                         <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300" id="software-chevron"></i>
                     </div>
                     <div class="accordion-content mt-4" id="software-content">
                         <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                             <!-- Product 1 -->
-                            <div class="pt-6 product-card">
-                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
-                                    <div class="-mt-6">
-                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
-                                            <i class="fas fa-laptop-code text-xl"></i>
+                            <div class="product-card glass-card overflow-hidden">
+                                <div class="relative">
+                                    <div class="aspect-w-16 aspect-h-9">
+                                        <img class="object-cover w-full h-full" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1534&q=80" alt="Banking firmware">
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <div class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                            Featured
                                         </div>
-                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Banking Firmware</h3>
-                                        <div class="mt-4 aspect-w-3 aspect-h-2">
-                                            <img class="object-cover shadow-lg rounded-lg" src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Banking firmware">
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center text-white">
+                                            <i class="fas fa-laptop-code text-lg"></i>
                                         </div>
-                                        <p class="mt-4 text-base text-gray-500">
-                                            Custom firmware solutions for banking devices including passbook printers and card readers.
-                                        </p>
-                                        <div class="mt-6">
-                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
-                                                Request Quote <span aria-hidden="true">→</span>
-                                            </a>
+                                        <h3 class="ml-3 text-lg font-semibold text-gray-900">Banking Firmware</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-6">
+                                        Custom firmware solutions for banking devices including passbook printers and card readers.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <a href="contact.html" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors group">
+                                            Request Quote
+                                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-2"></i>
+                                        </a>
+                                        <div class="flex items-center text-gray-500">
+                                            <i class="fas fa-shield-alt mr-1"></i>
+                                            <span class="text-sm">Warranty Available</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Product 2 -->
-                            <div class="pt-6 product-card">
-                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
-                                    <div class="-mt-6">
-                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
-                                            <i class="fas fa-network-wired text-xl"></i>
+                            <div class="product-card glass-card overflow-hidden">
+                                <div class="relative">
+                                    <div class="aspect-w-16 aspect-h-9">
+                                        <img class="object-cover w-full h-full" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1534&q=80" alt="Network monitoring">
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <div class="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                            New
                                         </div>
-                                        <h3 class="mt-4 text-lg font-medium text-gray-900">Network Monitoring</h3>
-                                        <div class="mt-4 aspect-w-3 aspect-h-2">
-                                            <img class="object-cover shadow-lg rounded-lg" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1534&q=80" alt="Network monitoring">
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-green-600 to-green-400 flex items-center justify-center text-white">
+                                            <i class="fas fa-network-wired text-lg"></i>
                                         </div>
-                                        <p class="mt-4 text-base text-gray-500">
-                                            Comprehensive network monitoring and management tools for enterprise IT infrastructure.
-                                        </p>
-                                        <div class="mt-6">
-                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
-                                                Request Quote <span aria-hidden="true">→</span>
-                                            </a>
+                                        <h3 class="ml-3 text-lg font-semibold text-gray-900">Network Monitoring</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-6">
+                                        Comprehensive network monitoring and management tools for enterprise IT infrastructure.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <a href="contact.html" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors group">
+                                            Request Quote
+                                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-2"></i>
+                                        </a>
+                                        <div class="flex items-center text-gray-500">
+                                            <i class="fas fa-shield-alt mr-1"></i>
+                                            <span class="text-sm">Warranty Available</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Product 3 -->
-                            <div class="pt-6 product-card">
-                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full glass-card">
-                                    <div class="-mt-6">
-                                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white">
-                                            <i class="fas fa-code-branch text-xl"></i>
+                            <div class="product-card glass-card overflow-hidden">
+                                <div class="relative">
+                                    <div class="aspect-w-16 aspect-h-9">
+                                        <img class="object-cover w-full h-full" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1534&q=80" alt="API integrations">
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-purple-600 to-purple-400 flex items-center justify-center text-white">
+                                            <i class="fas fa-code-branch text-lg"></i>
                                         </div>
-                                        <h3 class="mt-4 text-lg font-medium text-gray-900">API Integrations</h3>
-                                        <div class="mt-4 aspect-w-3 aspect-h-2">
-                                            <img class="object-cover shadow-lg rounded-lg" src="https://images.unsplash.com/photo-1580894742597-87bc8789db3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="API integrations">
-                                        </div>
-                                        <p class="mt-4 text-base text-gray-500">
-                                            Custom API development for banking and telecom systems integration and automation.
-                                        </p>
-                                        <div class="mt-6">
-                                            <a href="contact.html" class="text-base font-medium text-blue-600 hover:text-blue-500">
-                                                Request Quote <span aria-hidden="true">→</span>
-                                            </a>
+                                        <h3 class="ml-3 text-lg font-semibold text-gray-900">API Integrations</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-6">
+                                        Custom API development for banking and telecom systems integration and automation.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <a href="contact.html" class="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors group">
+                                            Request Quote
+                                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-2"></i>
+                                        </a>
+                                        <div class="flex items-center text-gray-500">
+                                            <i class="fas fa-shield-alt mr-1"></i>
+                                            <span class="text-sm">Warranty Available</span>
                                         </div>
                                     </div>
                                 </div>
@@ -714,51 +1050,99 @@
     </footer>
 
     <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 50
+        });
+
         // Mobile menu toggle function
         document.getElementById('mobile-menu-button').addEventListener('click', function() {
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenu.classList.toggle('hidden');
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('mobile-menu-active');
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            
+            if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
         });
 
         // Accordion functionality
         function toggleAccordion(id) {
             const content = document.getElementById(`${id}-content`);
             const chevron = document.getElementById(`${id}-chevron`);
+            const allContents = document.querySelectorAll('.accordion-content');
+            const allChevrons = document.querySelectorAll('.accordion-header .fas.fa-chevron-down');
             
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
-                chevron.style.transform = 'rotate(0deg)';
-            } else {
-                content.style.maxHeight = content.scrollHeight + 'px';
+            // Close all other accordions
+            allContents.forEach(item => {
+                if (item.id !== `${id}-content`) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            allChevrons.forEach(item => {
+                if (item.id !== `${id}-chevron`) {
+                    item.style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            // Toggle current accordion
+            content.classList.toggle('active');
+            
+            // Rotate chevron
+            if (content.classList.contains('active')) {
                 chevron.style.transform = 'rotate(180deg)';
+            } else {
+                chevron.style.transform = 'rotate(0deg)';
             }
         }
 
-        // Scroll reveal animations
-        document.addEventListener('DOMContentLoaded', function() {
-            const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
-                });
-            }, {
-                threshold: 0.1
+        // Open the first accordion by default
+        window.addEventListener('load', function() {
+            const firstAccordion = document.querySelector('.accordion-header');
+            if (firstAccordion) {
+                firstAccordion.click();
+            }
+        });
+
+        // Add hover effect to product cards
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.querySelector('img').style.transform = 'scale(1.05)';
             });
             
-            scrollRevealElements.forEach(element => {
-                observer.observe(element);
-            });
-            
-            // Fix for the accordion sections to ensure they start collapsed
-            const accordionContents = document.querySelectorAll('.accordion-content');
-            accordionContents.forEach(content => {
-                content.style.maxHeight = null;
+            card.addEventListener('mouseleave', function() {
+                this.querySelector('img').style.transform = 'scale(1)';
             });
         });
     </script>
 </body>
+</html>
 </html>
